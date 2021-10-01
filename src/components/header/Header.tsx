@@ -1,10 +1,20 @@
-import { DefaultButton, IIconProps } from "@fluentui/react";
-import { classNames } from "./classess";
-import { ReactComponent as MenuIcon } from "../assets/img/layout/menu_icon.svg";
-import { ReactComponent as CMSLogo } from "../assets/img/layout/INTEGRACMS.svg";
-import { ReactComponent as RefreshIcon } from "../assets/img/layout/top_refresh.svg";
+import { useState, useRef, lazy, Suspense } from "react";
+import { DefaultButton } from "@fluentui/react";
+import {
+  MenuIcon,
+  CloseIcon,
+  CMSLogo,
+  RefreshIcon,
+  Logout,
+  useOnClickOutside,
+  classNames,
+} from "./";
+
+const NavOverlay: any = lazy(() => import("../nav/navOverlay/NavOverlay"));
 
 const Header = () => {
+  const [userDrop, setUserDrop] = useState(false);
+  const [hamNav, setHamNav] = useState(false);
   const {
     header,
     hamberger,
@@ -16,11 +26,39 @@ const Header = () => {
     defaultBtn,
     userDropdown,
     profileIcon,
+    userDropOptions,
   } = classNames;
+  const ref: any = useRef();
+  const refHam: any = useRef();
+
+  useOnClickOutside(ref, () => setUserDrop(false));
+  useOnClickOutside(refHam, () => setHamNav(false));
+
+  const userDropHandler = (e: any) => {
+    setUserDrop((state) => !state);
+  };
+
+  const childHandler = (e: any) => {
+    e.stopPropagation();
+    console.log("test");
+  };
+  const hambergerHandler = () => {
+    setHamNav((state) => !state);
+  };
+
   return (
     <div className={header}>
-      <div className={hamberger}>
-        <MenuIcon className={hambergerIcon} />
+      <div className={hamberger} onClick={hambergerHandler} ref={refHam}>
+        {hamNav ? (
+          <>
+            <CloseIcon className={hambergerIcon} />
+            <Suspense fallback="">
+              <NavOverlay />
+            </Suspense>
+          </>
+        ) : (
+          <MenuIcon className={hambergerIcon} />
+        )}
       </div>
       <h1>
         <CMSLogo className={mainLogo} />
@@ -31,12 +69,19 @@ const Header = () => {
         <DefaultButton className={defaultBtn} type="submit" onClick={() => {}}>
           + Create Service Notification
         </DefaultButton>
-        <div className={userDropdown}>
+        <div className={userDropdown} onClick={userDropHandler} ref={ref}>
           <div>
             <h3 className="name">James Smith</h3>
             <span className="role">Help Desk User</span>
           </div>
           <div className={profileIcon}>JS</div>
+          {userDrop ? (
+            <ul className={userDropOptions}>
+              <li onClick={childHandler}>
+                <span>LogOut</span> <Logout />
+              </li>
+            </ul>
+          ) : null}
         </div>
       </div>
     </div>

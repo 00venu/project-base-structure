@@ -1,7 +1,4 @@
-import { ITheme, mergeStyleSets, getTheme } from "@fluentui/react/lib/Styling";
-
-const theme: ITheme = getTheme();
-const { palette, semanticColors, fonts } = theme;
+import { mergeStyleSets } from "@fluentui/react/lib/Styling";
 
 export const classNames = mergeStyleSets({
   header: {
@@ -18,7 +15,7 @@ export const classNames = mergeStyleSets({
   hamberger: {
     width: "50px",
     height: "100%",
-    backgroundColor: "#1d1d24",
+    backgroundColor: "#141414",
     position: "relative",
     textAlign: "center",
     cursor: "pointer",
@@ -62,7 +59,7 @@ export const classNames = mergeStyleSets({
     width: "220px",
     height: "100%",
     color: "#ccc",
-    backgroundColor: "#1d1d24",
+    backgroundColor: "#141414",
     cursor: "pointer",
     textAlign: "center",
     display: "flex",
@@ -82,5 +79,29 @@ export const classNames = mergeStyleSets({
     fontWeight: "normal",
     fontSize: "14px",
     marginLeft: "5px",
+  },
+  userDropOptions: {
+    width: "220px",
+    position: "absolute",
+    top: "60px",
+    right: 0,
+    backgroundColor: "#141414",
+    li: {
+      height: "60px",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      paddingRight: "20px",
+      backgroundColor: "transparent",
+      fontSize: "14px",
+      color: "#999",
+      cursor: "pointer",
+      "&:hover": {
+        backgroundColor: "#26262D",
+      },
+      span: {
+        paddingRight: "10px",
+      },
+    },
   },
 });

@@ -3,7 +3,7 @@ import { ThemeProvider } from "@fluentui/react";
 import { integraDark } from "./components/themes/theme";
 
 import List from "./components/list/List";
-import LandingPage from "./pages/LandingPage";
+import LandingPage from "./pages/landingPage/LandingPage";
 import "./App.css";
 
 const App = () => {
