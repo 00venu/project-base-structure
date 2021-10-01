@@ -1,15 +1,15 @@
 import { LIST_TODO } from "../actions/listActions";
-import { ListState } from "./interface/interface";
+import { ListState } from "./interface";
 
 const initialState = {
   list: [],
 };
 
-export type Action = { type: "LIST_TODO"; payload: string };
+export type Action = { type: string; payload: string };
 
 const ListReducer = (state: ListState = initialState, action: Action) => {
   switch (action.type) {
-    case "LIST_TODO": {
+    case LIST_TODO: {
       return {
         ...state,
         list: action.payload,

@@ -19,7 +19,7 @@ export const listTodo = () => {
           "Access-Control-Allow-Origin": ACCESS_CONTROL_ALLOW_ORIGIN_STAR,
         },
       });
-      dispatch({ type: "LIST_TODO", payload: response.data });
+      dispatch({ type: LIST_TODO, payload: response.data });
     } catch (err: any) {
       return err;
     }

@@ -24,7 +24,7 @@ export const classNames = mergeStyleSets({
       borderBottom: `1px solid ${semanticColors.bodyDivider}`,
       display: "flex",
       selectors: {
-        "&:hover": { background: palette.neutralLight },
+        "&:hover": { background: palette.neutralPrimaryAlt },
       },
     },
   ],

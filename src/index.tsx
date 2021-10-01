@@ -1,9 +1,8 @@
 import "react-app-polyfill/ie11";
 import "react-app-polyfill/stable";
-import React from "react";
 import ReactDOM from "react-dom";
 
-import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import reduxThunk from "redux-thunk";
 
