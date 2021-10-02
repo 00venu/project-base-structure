@@ -85,6 +85,7 @@ export const classNames = mergeStyleSets({
     position: "absolute",
     top: "60px",
     right: 0,
+    zIndex: 2,
     backgroundColor: "#141414",
     li: {
       height: "60px",
@@ -97,7 +98,7 @@ export const classNames = mergeStyleSets({
       color: "#999",
       cursor: "pointer",
       "&:hover": {
-        backgroundColor: "#26262D",
+        backgroundColor: "#333d3d",
       },
       span: {
         paddingRight: "10px",

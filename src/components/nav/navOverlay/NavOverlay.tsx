@@ -7,11 +7,7 @@ const NavOverlay = () => {
     e.stopPropagation();
     console.log("test");
   };
-  return (
-    <div className={navOverlayWrapper} onClick={childHandler}>
-      Test
-    </div>
-  );
+  return <div className={navOverlayWrapper} onClick={childHandler}></div>;
 };
 
 export default NavOverlay;

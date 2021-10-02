@@ -1,7 +1,7 @@
-import { LockIcon, AlarmBackground, classNames } from "./";
+import { LockIcon, AlarmBackground, Rightarrow, classNames } from "./";
 
-const MinimizedPanel = () => {
-  const { minimizedPanel, textRotation, textContainer } = classNames;
+const MinimizedPanel = ({ servicePanelHandler }: any) => {
+  const { minimizedPanel, textRotation, textContainer, leftArrow } = classNames;
   return (
     <div className={minimizedPanel}>
       <LockIcon />
@@ -9,6 +9,9 @@ const MinimizedPanel = () => {
       <div className={textContainer}>
         <AlarmBackground />
         <span>30</span>
+      </div>
+      <div className={leftArrow}>
+        <Rightarrow onClick={servicePanelHandler} />
       </div>
     </div>
   );
