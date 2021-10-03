@@ -39,4 +39,15 @@ export const classNames = mergeStyleSets({
     left: "-20px",
     bottom: 0,
   },
+  maximizedAlaramPanel: {
+    width: "350px",
+    height: "100%",
+    backgroundColor: "#26262D",
+    position: "fixed",
+    top: "60px",
+    right: 0,
+    bottom: 0,
+    zIndex: "998",
+    borderTop: "1px solid #666",
+  },
 });

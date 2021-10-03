@@ -1,6 +1,6 @@
 import { AlarmIcon, AlarmBackground, Leftarrow, classNames } from "./";
 
-const MinimizedAlaramPanel = () => {
+const MinimizedAlaramPanel = ({ alaramPanelHandler }: any) => {
   const { minimizedAlaramPanel, textRotation, textContainer, leftArrow } =
     classNames;
   return (
@@ -21,7 +21,7 @@ const MinimizedAlaramPanel = () => {
         <AlarmBackground />
         <span>30</span>
       </div>
-      <Leftarrow className={leftArrow} />
+      <Leftarrow className={leftArrow} onClick={alaramPanelHandler} />
     </div>
   );
 };

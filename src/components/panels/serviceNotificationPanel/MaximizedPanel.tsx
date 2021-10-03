@@ -12,7 +12,7 @@ const MaximizedPanel = ({ servicePanelHandler }: any) => {
 
   const animHandler = () => {
     setAnim(maximizedPanelClose);
-    setTimeout(() => servicePanelHandler(), 150);
+    setTimeout(() => servicePanelHandler(), 0);
   };
 
   return (

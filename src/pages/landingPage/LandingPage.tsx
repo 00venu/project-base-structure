@@ -1,37 +1,10 @@
-import { useState, lazy, Suspense } from "react";
-import {
-  Header,
-  LeftNav,
-  MinimizedPanel,
-  MinimizedAlaramPanel,
-  classNames,
-} from "./";
-
-const MaximizedPanel: any = lazy(
-  () =>
-    import("../../components/panels/serviceNotificationPanel/MaximizedPanel")
-);
+import { classNames } from "./classess";
 
 const LandingPage = () => {
-  const [servicePanel, setServicePanel] = useState(true);
-  const {} = classNames;
-
-  const servicePanelHandler = () => {
-    setServicePanel((state) => !state);
-  };
-
+  const { pageHeader } = classNames;
   return (
     <div>
-      <Header />
-      <LeftNav />
-      {servicePanel ? (
-        <MinimizedPanel servicePanelHandler={servicePanelHandler} />
-      ) : (
-        <Suspense fallback="">
-          <MaximizedPanel servicePanelHandler={servicePanelHandler} />
-        </Suspense>
-      )}
-      <MinimizedAlaramPanel />
+      <h3 className={pageHeader}>Fleet Overview</h3>
     </div>
   );
 };
