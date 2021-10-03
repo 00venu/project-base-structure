@@ -11,4 +11,11 @@ export const classNames = mergeStyleSets({
     bottom: 0,
     zIndex: "999",
   },
+  navItems: {
+    li: {
+      textAlign: "center",
+      padding: "10px 0",
+      cursor: "pointer",
+    },
+  },
 });

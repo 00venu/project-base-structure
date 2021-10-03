@@ -50,4 +50,10 @@ export const classNames = mergeStyleSets({
     zIndex: "998",
     borderTop: "1px solid #666",
   },
+  maximizedPanelOpen: {
+    ...AnimationStyles.slideLeftIn400,
+  },
+  maximizedPanelClose: {
+    ...AnimationStyles.slideRightOut400,
+  },
 });

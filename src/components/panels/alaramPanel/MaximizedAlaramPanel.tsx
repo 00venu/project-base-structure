@@ -1,11 +1,21 @@
+import { useState } from "react";
 import { CloseRightarrow, classNames } from "./";
 
 const MaximizedAlaramPanel = ({ alaramPanelHandler }: any) => {
-  const { maximizedAlaramPanel, leftArrow } = classNames;
-
+  const {
+    maximizedAlaramPanel,
+    leftArrow,
+    maximizedPanelOpen,
+    maximizedPanelClose,
+  } = classNames;
+  const [anim, setAnim] = useState(maximizedPanelOpen);
+  const animHandler = () => {
+    setAnim(maximizedPanelClose);
+    setTimeout(() => alaramPanelHandler(), 0);
+  };
   return (
-    <div className={maximizedAlaramPanel}>
-      <CloseRightarrow className={leftArrow} onClick={alaramPanelHandler} />
+    <div className={[maximizedAlaramPanel, maximizedPanelOpen].join(" ")}>
+      <CloseRightarrow className={leftArrow} onClick={animHandler} />
     </div>
   );
 };

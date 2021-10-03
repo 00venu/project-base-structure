@@ -5,7 +5,6 @@ import {
   LeftNav,
   MinimizedPanel,
   MinimizedAlaramPanel,
-  MaximizedAlaramPanel,
   classNames,
 } from "./";
 
@@ -13,23 +12,28 @@ const MaximizedPanel: any = lazy(
   () => import("../panels/serviceNotificationPanel/MaximizedPanel")
 );
 
+const MaximizedAlaramPanel: any = lazy(
+  () => import("../panels/alaramPanel/MaximizedAlaramPanel")
+);
+
 const ProtectedRoute = (props: any) => {
-  const { wrapper, openLeft, closeLeft } = classNames;
+  const { wrapper, openLeft, closeLeft, openRight, closeRight } = classNames;
   const [servicePanel, setServicePanel] = useState(true);
   const [alaramPanel, setAlaramPanel] = useState(true);
   const [anim, setAnim]: any = useState();
+  const [animAlaram, setAnimAlaram]: any = useState();
   const { component: Component, ...rest } = props;
 
   const servicePanelHandler = () => {
-    setServicePanel((state) => !state);
     const val = servicePanel ? openLeft : closeLeft;
     setAnim(val);
+    setServicePanel((state) => !state);
   };
 
   const alaramPanelHandler = () => {
+    const val = alaramPanel ? openRight : closeRight;
+    setAnimAlaram(val);
     setAlaramPanel((state) => !state);
-    //const val = servicePanel ? openLeft : closeLeft;
-    //setAnim(val);
   };
 
   return (
@@ -43,7 +47,7 @@ const ProtectedRoute = (props: any) => {
           <MaximizedPanel servicePanelHandler={servicePanelHandler} />
         </Suspense>
       )}
-      <div className={[wrapper, anim].join(" ")}>
+      <div className={[wrapper, anim, animAlaram].join(" ")}>
         <Route
           {...rest}
           render={(props) => <Component {...props} {...rest} />}
@@ -52,7 +56,9 @@ const ProtectedRoute = (props: any) => {
       {alaramPanel ? (
         <MinimizedAlaramPanel alaramPanelHandler={alaramPanelHandler} />
       ) : (
-        <MaximizedAlaramPanel alaramPanelHandler={alaramPanelHandler} />
+        <Suspense fallback="">
+          <MaximizedAlaramPanel alaramPanelHandler={alaramPanelHandler} />
+        </Suspense>
       )}
     </>
   );
