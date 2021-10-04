@@ -1,23 +1,46 @@
-import { useHistory } from "react-router-dom";
-import { HomeSVG, UOSVG, classNames } from "./";
+import { NavLink, Link, useLocation } from "react-router-dom";
+import { classNames, navData } from "./";
 
 const LeftNav = () => {
-  const history = useHistory();
-  const { leftNav, navItems } = classNames;
-  const navigateHandler = (val: any) => {
-    history.push(val);
-  };
+  const { leftNav, navItems, active } = classNames;
+  const { pathname } = useLocation();
   return (
-    <div className={leftNav}>
+    <nav className={leftNav}>
       <ul className={navItems}>
-        <li>
-          <HomeSVG onClick={() => navigateHandler("/")} />
-        </li>
-        <li>
-          <UOSVG onClick={() => navigateHandler("/otherPage")} />
-        </li>
+        {navData.map((item) => {
+          let isActive: any = {};
+          if (item.subNav) {
+            const paths = item.subNav.map((v) => v.path);
+            isActive["isActive"] = () =>
+              [item.path, ...paths].includes(pathname);
+          }
+          return (
+            <li>
+              <NavLink
+                exact
+                to={item.path}
+                activeClassName={active}
+                {...isActive}
+              >
+                {item.icon}
+                {item.subNav ? <span>{item.tip}</span> : null}
+              </NavLink>
+              {item.subNav ? (
+                <ul>
+                  {item.subNav.map((subItem) => {
+                    return (
+                      <li>
+                        <Link to={subItem.path}>{subItem.name}</Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+              ) : null}
+            </li>
+          );
+        })}
       </ul>
-    </div>
+    </nav>
   );
 };
 

@@ -14,47 +14,59 @@ const duration = {
 };
 
 const openLeft: string = keyframes({
-  "0%": { marginLeft: "135px" },
-  "100%": { marginLeft: "390px" },
+  "0%": { width: "135px" },
+  "100%": { width: "390px" },
 });
 const closeLeft: string = keyframes({
-  "0%": { marginLeft: "390px" },
-  "100%": { marginLeft: "135px" },
+  "0%": { width: "390px" },
+  "100%": { width: "135px" },
 });
 
 const openRight: string = keyframes({
-  "0%": { marginRight: "85px" },
-  "100%": { marginRight: "390px" },
+  "0%": { width: "85px" },
+  "100%": { width: "390px" },
 });
 const closeRight: string = keyframes({
-  "0%": { marginRight: "390px" },
-  "100%": { marginRight: "85px" },
+  "0%": { width: "390px" },
+  "100%": { width: "85px" },
 });
 
 export const classNames = mergeStyleSets({
+  parent: {
+    display: "flex",
+  },
+  wrapLeft: {
+    width: "135px",
+    marginTop: "80px",
+  },
+  wrapRight: {
+    width: "85px",
+    marginTop: "80px",
+  },
   wrapper: {
-    margin: "80px 85px 0 135px",
+    marginTop: "80px",
     border: "1px solid #666",
     padding: "20px",
+    flexGrow: 1,
   },
   openLeft: {
     animationDuration: AnimationVariables.durationValue1,
     animationName: openLeft,
-    marginLeft: "390px",
+    width: "390px",
   },
   closeLeft: {
     animationDuration: AnimationVariables.easeFunction2,
     animationName: closeLeft,
-    marginLeft: "135px",
+    width: "135px",
   },
   openRight: {
     animationDuration: AnimationVariables.durationValue2,
     animationName: openRight,
-    marginRight: "390px",
+    width: "390px",
   },
   closeRight: {
     animationDuration: AnimationVariables.easeFunction2,
     animationName: closeRight,
-    marginRight: "85px",
+    width: "85px",
   },
 });

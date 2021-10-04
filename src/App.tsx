@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ThemeProvider } from "@fluentui/react";
 import { integraDark } from "./components/themes/theme";
 
@@ -16,6 +16,7 @@ const App = () => {
         <Switch>
           <ProtectedRoute exact path="/" component={LandingPage} />
           <ProtectedRoute exact path="/otherPage" component={OtherPage} />
+          <ProtectedRoute path="*" component={LandingPage} />
         </Switch>
       </Router>
     </ThemeProvider>

@@ -17,7 +17,16 @@ const MaximizedAlaramPanel: any = lazy(
 );
 
 const ProtectedRoute = (props: any) => {
-  const { wrapper, openLeft, closeLeft, openRight, closeRight } = classNames;
+  const {
+    wrapper,
+    openLeft,
+    closeLeft,
+    openRight,
+    closeRight,
+    parent,
+    wrapLeft,
+    wrapRight,
+  } = classNames;
   const [servicePanel, setServicePanel] = useState(true);
   const [alaramPanel, setAlaramPanel] = useState(true);
   const [anim, setAnim]: any = useState();
@@ -47,11 +56,15 @@ const ProtectedRoute = (props: any) => {
           <MaximizedPanel servicePanelHandler={servicePanelHandler} />
         </Suspense>
       )}
-      <div className={[wrapper, anim, animAlaram].join(" ")}>
-        <Route
-          {...rest}
-          render={(props) => <Component {...props} {...rest} />}
-        />
+      <div className={parent}>
+        <div className={[wrapLeft, anim].join(" ")}></div>
+        <div className={wrapper}>
+          <Route
+            {...rest}
+            render={(props) => <Component {...props} {...rest} />}
+          />
+        </div>
+        <div className={[wrapRight, animAlaram].join(" ")}></div>
       </div>
       {alaramPanel ? (
         <MinimizedAlaramPanel alaramPanelHandler={alaramPanelHandler} />
