@@ -20,10 +20,13 @@ const NavOverlay = () => {
     <div className={navOverlayWrapper} onClick={childHandler}>
       <nav>
         <ul className={expandedNav}>
-          {navData.map((item) => {
+          {navData.map((item, i) => {
             const dynamicClass: any = submenuBackground;
             return (
-              <li className={showSubNav === item.name ? dynamicClass : null}>
+              <li
+                className={showSubNav === item.name ? dynamicClass : null}
+                key={i}
+              >
                 <NavLink
                   to={item.path}
                   onClick={() =>
@@ -38,9 +41,9 @@ const NavOverlay = () => {
                 </NavLink>
                 {item.subNav ? (
                   <ul>
-                    {item.subNav.map((subItem) => {
+                    {item.subNav.map((subItem, j) => {
                       return (
-                        <li>
+                        <li key={j}>
                           <Link to={subItem.path}>{subItem.name}</Link>
                         </li>
                       );

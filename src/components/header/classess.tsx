@@ -57,7 +57,14 @@ export const classNames = mergeStyleSets({
     padding: "18px",
     margin: "0 16px",
     selectors: {
-      "&:hover": { color: " #008B98" },
+      "&:hover": {
+        backgroundColor: "#383838",
+        color: "#008B98",
+      },
+      "&:active": {
+        backgroundColor: "#383838",
+        color: "#008B98",
+      },
     },
   },
   userDropdown: {

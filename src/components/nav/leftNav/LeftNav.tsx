@@ -7,7 +7,7 @@ const LeftNav = () => {
   return (
     <nav className={leftNav}>
       <ul className={navItems}>
-        {navData.map((item) => {
+        {navData.map((item, i) => {
           let isActive: any = {};
           if (item.subNav) {
             const paths = item.subNav.map((v) => v.path);
@@ -15,7 +15,7 @@ const LeftNav = () => {
               [item.path, ...paths].includes(pathname);
           }
           return (
-            <li>
+            <li key={i}>
               <NavLink
                 exact
                 to={item.path}
@@ -27,9 +27,9 @@ const LeftNav = () => {
               </NavLink>
               {item.subNav ? (
                 <ul>
-                  {item.subNav.map((subItem) => {
+                  {item.subNav.map((subItem, j) => {
                     return (
-                      <li>
+                      <li key={j}>
                         <Link to={subItem.path}>{subItem.name}</Link>
                       </li>
                     );
