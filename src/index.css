@@ -44,7 +44,9 @@ li a {
   text-decoration: none;
 }
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 4px;
+  height: 4px;
+  padding: 4px;
 }
 
 ::-webkit-scrollbar-track {

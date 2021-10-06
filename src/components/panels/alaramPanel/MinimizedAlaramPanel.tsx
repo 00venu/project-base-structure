@@ -22,6 +22,7 @@ const MinimizedAlaramPanel = ({ alaramPanelHandler }: any) => {
         <span>30</span>
       </div>
       <Leftarrow className={leftArrow} onClick={alaramPanelHandler} />
+    
     </div>
   );
 };

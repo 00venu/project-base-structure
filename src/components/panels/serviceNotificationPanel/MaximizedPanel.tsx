@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { FocusZone, FocusZoneDirection } from "@fluentui/react/lib/FocusZone";
 import { List } from "@fluentui/react/lib/List";
+import { Text } from "@fluentui/react/lib/Text";
+import { Stack } from "@fluentui/react/lib/Stack";
 import {
   classNames,
   CloseLeftarrow,
@@ -23,6 +25,8 @@ const MaximizedPanel = ({ servicePanelHandler }: any) => {
     cardHeaderContainer,
     cardBody,
     cardBottom,
+    labelWidth,
+    labelWidth2,
   } = classNames;
   const [anim, setAnim] = useState(maximizedPanelOpen);
 
@@ -47,8 +51,20 @@ const MaximizedPanel = ({ servicePanelHandler }: any) => {
       <div className={card}>
         <div className={cardHeaderContainer}>
           <ul>
-            <li>{item?.text1}</li>
-            <li>{item?.text2}</li>
+            <li>
+              <Stack>
+                <Text nowrap={true} className={labelWidth}>
+                  {item?.text1}
+                </Text>
+              </Stack>
+            </li>
+            <li>
+              <Stack>
+                <Text nowrap className={labelWidth}>
+                  {item?.text2}
+                </Text>
+              </Stack>
+            </li>
           </ul>
           <ul>
             <li>{item?.date}</li>
@@ -58,7 +74,14 @@ const MaximizedPanel = ({ servicePanelHandler }: any) => {
         <div className={cardBody}>{item?.text3}</div>
         <div className={cardBottom}>
           <div>
-            <TrainSvg /> {item?.text5}
+            <TrainSvg />
+            <div>
+              <Stack>
+                <Text nowrap className={labelWidth2}>
+                  {item?.text5}
+                </Text>
+              </Stack>
+            </div>
           </div>
           <ul>
             <li>OPEN</li>
