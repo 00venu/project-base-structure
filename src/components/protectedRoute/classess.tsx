@@ -24,10 +24,10 @@ const closeLeft: string = keyframes({
 
 const openRight: string = keyframes({
   "0%": { width: "85px" },
-  "100%": { width: "390px" },
+  "100%": { width: "33%" },
 });
 const closeRight: string = keyframes({
-  "0%": { width: "390px" },
+  "0%": { width: "33%" },
   "100%": { width: "85px" },
 });
 
@@ -62,7 +62,7 @@ export const classNames = mergeStyleSets({
   openRight: {
     animationDuration: AnimationVariables.durationValue2,
     animationName: openRight,
-    width: "390px",
+    width: "33%",
   },
   closeRight: {
     animationDuration: AnimationVariables.easeFunction2,

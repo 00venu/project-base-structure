@@ -42,7 +42,7 @@ export const classNames: any = mergeStyleSets(
       bottom: 0,
     },
     maximizedAlaramPanel: {
-      width: "350px",
+      width: "30%",
       height: "100%",
       backgroundColor: "#26262D",
       position: "fixed",
@@ -65,6 +65,9 @@ export const classNames: any = mergeStyleSets(
       borderRadius: "3px",
       padding: "10px",
       marginTop: "20px",
+    },
+    mb20: {
+      marginBottom: "20px",
     },
   },
   panelCards

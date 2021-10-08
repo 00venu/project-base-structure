@@ -12,7 +12,7 @@ const TrainAlert = (props: any) => {
         {[...Array(alertInfo.noOfCabins)].map((item, i) => {
           let num = i + 1;
           return (
-            <li>
+            <li key={i}>
               <Cabin
                 className={alertInfo.issueInCabin === num ? issueCabin : null}
               />
