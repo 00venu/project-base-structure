@@ -84,7 +84,7 @@ export const navData = [
       },
       {
         name: "Condition Reports",
-        path: "/test13",
+        path: "/conditionReports",
       },
       {
         name: "Status Reports",

@@ -6,6 +6,7 @@ import ProtectedRoute from "./components/protectedRoute/ProtectedRoute";
 import List from "./components/list/List";
 import LandingPage from "./pages/landingPage/LandingPage";
 import OtherPage from "./pages/landingPage/OtherPage";
+import ConditionReports from "./pages/ConditionReports/ConditionReports";
 
 import "./App.css";
 
@@ -16,6 +17,11 @@ const App = () => {
         <Switch>
           <ProtectedRoute exact path="/" component={LandingPage} />
           <ProtectedRoute exact path="/otherPage" component={OtherPage} />
+          <ProtectedRoute
+            exact
+            path="/conditionReports"
+            component={ConditionReports}
+          />
           <ProtectedRoute path="*" component={LandingPage} />
         </Switch>
       </Router>
