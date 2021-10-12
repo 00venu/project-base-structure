@@ -45,7 +45,7 @@ export const classNames = mergeStyleSets({
   },
   wrapper: {
     marginTop: "80px",
-    border: "1px solid #666",
+    //  border: "1px solid #666",
     padding: "20px",
     flexGrow: 1,
   },
