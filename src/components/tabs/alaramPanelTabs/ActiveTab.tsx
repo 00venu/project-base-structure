@@ -1,10 +1,36 @@
+import { useState, useEffect } from "react";
 import { FocusZone, FocusZoneDirection } from "@fluentui/react/lib/FocusZone";
 import { List } from "@fluentui/react/lib/List";
 import { Text } from "@fluentui/react/lib/Text";
 import { Stack } from "@fluentui/react/lib/Stack";
-import { classNames, DummyData, TrainSvg, RoundButton } from "./";
+import { Toggle } from "@fluentui/react/lib/Toggle";
+import {
+  classNames,
+  TrainSvg,
+  activeTabData,
+  AlarmoverviewSpanelGreen,
+  AlarmoverviewSpanelWhite,
+  AlarmtrainIcon,
+  UOSVG,
+} from "./";
 
 const ActiveTab = (props: any) => {
+  const [activeData, setActiveData]: any = useState(activeTabData);
+  const [pLowData, setPLowData] = useState([]);
+  const [pHighData, setPHighData] = useState([]);
+
+  const filterItems = (key: any, value: any) => {
+    return activeTabData.filter(
+      (v: any) => v[key].toString().toLocaleLowerCase() === value
+    );
+  };
+  useEffect(() => {
+    const lowData: any = filterItems("priority", "low");
+    const highData: any = filterItems("priority", "high");
+    setPLowData(lowData);
+    setPHighData(highData);
+  }, [activeData]);
+
   const {
     card,
     cardHeaderContainer,
@@ -19,16 +45,40 @@ const ActiveTab = (props: any) => {
     colorOrange,
     colorRed,
     activeButton,
-    repairPriority,
+    repairPriorityLow,
+    repairPriorityHigh,
+    spannerIcon,
+    trainColorBlue,
+    trainColorPink,
   } = classNames;
   interface CardList {
-    text1: string;
-    text2: string;
+    defect_id: string;
     date: string;
     time: string;
-    text3: string;
-    text5: string;
+    defect_description: string;
+    functional_location: any;
+    priority: string;
+    is_sn_raised: any;
+    sn_status: any;
+    unit_status: any;
   }
+  const alarmData = filterItems("type", "alarm");
+  const eventData = filterItems("type", "event");
+  const alertData = filterItems("type", "alert");
+
+  const spanerIconFn = (is_sn_raised: any, sn_status: any) => {
+    if (!is_sn_raised) {
+      return null;
+    } else if (is_sn_raised && sn_status.toString().toLowerCase() === "open") {
+      return <AlarmoverviewSpanelWhite className={spannerIcon} />;
+    } else {
+      return <AlarmoverviewSpanelGreen className={spannerIcon} />;
+    }
+  };
+  const trainColor = (unit_status: any) => {
+    let val = unit_status.toString().toLowerCase();
+    return val.includes("operation");
+  };
   const onRenderCell = (
     item: CardList | undefined,
     index: number | undefined
@@ -40,14 +90,15 @@ const ActiveTab = (props: any) => {
             <li>
               <Stack>
                 <Text nowrap={true} className={labelWidth}>
-                  {item?.text1}
+                  {spanerIconFn(item?.is_sn_raised, item?.sn_status)}
+                  {item?.defect_id}
                 </Text>
               </Stack>
             </li>
             <li>
               <Stack>
                 <Text nowrap className={labelWidth}>
-                  {item?.text2}
+                  {item?.defect_description}
                 </Text>
               </Stack>
             </li>
@@ -59,16 +110,28 @@ const ActiveTab = (props: any) => {
         </div>
         <div className={cardBottom}>
           <div>
-            <TrainSvg />
+            <UOSVG
+              className={
+                trainColor(item?.unit_status) ? trainColorBlue : trainColorPink
+              }
+            />
             <div>
               <Stack>
                 <Text nowrap className={labelWidth2}>
-                  {item?.text5}
+                  {item?.functional_location}
                 </Text>
               </Stack>
             </div>
           </div>
-          <div className={repairPriority}>LOW</div>
+          <div
+            className={
+              item?.priority.toString().toLowerCase() === "low"
+                ? repairPriorityLow
+                : repairPriorityHigh
+            }
+          >
+            {item?.priority}
+          </div>
         </div>
       </div>
     );
@@ -76,33 +139,33 @@ const ActiveTab = (props: any) => {
   return (
     <>
       <div className={buttonParent}>
-        <RoundButton text="Alarm" active={true} />
-        <RoundButton text="Events" />
-        <RoundButton text="Alerts" />
+        <Toggle defaultChecked label={`Alarm (${alarmData.length})`} />
+        <Toggle defaultChecked label={`Events (${eventData.length})`} />
+        <Toggle defaultChecked label={`Alerts (${alertData.length})`} />
       </div>
       <ul className={priorityButtons}>
         <li className={activeButton}>
           <span className={trainCircle}>
-            <TrainSvg className={trainIcon} />
+            <UOSVG className={trainIcon} />
           </span>
-          All <p>30</p>
+          All <p>{activeData.length}</p>
         </li>
         <li>
           <span className={[trainCircle, colorRed].join(" ")}>
-            <TrainSvg className={trainIcon} />
+            <UOSVG className={trainIcon} />
           </span>
-          High Priority <p>10</p>
+          High Priority <p>{pHighData.length}</p>
         </li>
         <li>
           <span className={[trainCircle, colorOrange].join(" ")}>
-            <TrainSvg className={trainIcon} />
+            <UOSVG className={trainIcon} />
           </span>
-          Low Priority <p>20</p>
+          Low Priority <p>{pLowData.length}</p>
         </li>
       </ul>
       <div className={cardsParent} style={{ height: "55vh" }}>
         <FocusZone direction={FocusZoneDirection.vertical}>
-          <List items={DummyData} onRenderCell={onRenderCell} />
+          <List items={activeData} onRenderCell={onRenderCell} />
         </FocusZone>
       </div>
     </>

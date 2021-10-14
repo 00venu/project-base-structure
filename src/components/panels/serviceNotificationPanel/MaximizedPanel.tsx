@@ -58,13 +58,7 @@ const MaximizedPanel = ({ servicePanelHandler }: any) => {
                 </Text>
               </Stack>
             </li>
-            <li>
-              <Stack>
-                <Text nowrap className={labelWidth}>
-                  {item?.text2}
-                </Text>
-              </Stack>
-            </li>
+            <li>{item?.text2}</li>
           </ul>
           <ul>
             <li>{item?.date}</li>

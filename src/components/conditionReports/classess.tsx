@@ -37,7 +37,7 @@ export const classNames = mergeStyleSets({
             borderLeft: 0,
             borderRight: 0,
           },
-          "& tr:first-child th:nth-child(2)": {
+          "& tr:first-child th:nth-child(2) .tableIcon": {
             color: "transparent",
           },
         },
@@ -71,5 +71,8 @@ export const classNames = mergeStyleSets({
   pagination: {
     display: "none",
     padding: "0.5rem",
+  },
+  tableIcon: {
+    color: "#008B98",
   },
 });

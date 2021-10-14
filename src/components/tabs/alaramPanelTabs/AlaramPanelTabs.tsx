@@ -6,7 +6,14 @@ import {
   PivotItem,
 } from "@fluentui/react";
 
-import { classNames, ActiveTab } from "./";
+import {
+  classNames,
+  ActiveTab,
+  activeTabData,
+  acknowledgedTabData,
+  unacknowledged,
+  isIsolated,
+} from "./";
 const AlaramPanelTabs = (props: any) => {
   const labelStyles: Partial<IStyleSet<ILabelStyles>> = {
     root: { marginTop: 10 },
@@ -20,16 +27,16 @@ const AlaramPanelTabs = (props: any) => {
         className={linkIsSelected}
         overflowBehavior="menu"
       >
-        <PivotItem headerText="Active(90)">
+        <PivotItem headerText={`Active(${activeTabData.length})`}>
           <ActiveTab showDetails={props.showDetails} />
         </PivotItem>
-        <PivotItem headerText="Acknowledged(20)">
+        <PivotItem headerText={`Acknowledged(${acknowledgedTabData.length})`}>
           <Label styles={labelStyles}>Pivot #2</Label>
         </PivotItem>
-        <PivotItem headerText="Unacknowledged(20)">
+        <PivotItem headerText={`Unacknowledged(${unacknowledged.length})`}>
           <Label styles={labelStyles}>Pivot #3</Label>
         </PivotItem>
-        <PivotItem headerText="Isolated(30)">
+        <PivotItem headerText={`Isolated(${isIsolated.length})`}>
           <Label styles={labelStyles}>Pivot #Four</Label>
         </PivotItem>
       </Pivot>

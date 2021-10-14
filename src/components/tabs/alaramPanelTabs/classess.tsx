@@ -39,9 +39,25 @@ export const classNames: any = mergeStyleSets(
       borderBottom: "2px solid #008B98 !important",
     },
     buttonParent: {
-      paddingTop: "15px",
-      button: {
-        marginRight: "10px",
+      marginTop: "15px",
+      display: "flex",
+      justifyContent: "space-between",
+      backgroundColor: "#18181d",
+      padding: "15px 10px 10px 10px",
+      borderRadius: "3px",
+      label: {
+        paddingLeft: "10px",
+      },
+      div: {
+        display: "flex",
+        flexDirection: "row-reverse",
+        alignItems: "center",
+        ".ms-Toggle-background": {
+          border: "1px solid #008B98",
+        },
+        ".ms-Toggle-thumb": {
+          backgroundColor: "#fff",
+        },
       },
     },
     priorityButtons: {
@@ -89,15 +105,15 @@ export const classNames: any = mergeStyleSets(
       },
     },
     colorRed: {
-      border: "1px solid red",
+      border: "1px solid #c62828",
       "svg path": {
-        fill: "red",
+        fill: "#c62828",
       },
     },
     colorOrange: {
-      border: "1px solid orange",
+      border: "1px solid #ff8f00",
       "svg path": {
-        fill: "orange",
+        fill: "#ff8f00",
       },
     },
     activeButton: {
@@ -117,11 +133,12 @@ export const classNames: any = mergeStyleSets(
         },
       },
     },
-    repairPriority: {
-      color: "orange",
+    repairPriorityLow: {
+      color: "#ff8f00",
       fontSize: "12px",
       paddingRight: "15px",
       position: "relative",
+      fontFamily: "roboto-med",
       selectors: {
         ":after": {
           width: "8px",
@@ -132,11 +149,56 @@ export const classNames: any = mergeStyleSets(
           right: 0,
           bottom: 0,
           margin: "auto",
-          backgroundColor: "orange",
+          backgroundColor: "#ff8f00",
           borderRadius: "50%",
         },
       },
     },
+    repairPriorityHigh: {
+      color: "#c62828",
+      fontSize: "12px",
+      paddingRight: "15px",
+      position: "relative",
+      fontFamily: "roboto-med",
+      selectors: {
+        ":after": {
+          width: "8px",
+          height: "8px",
+          content: "''",
+          position: "absolute",
+          top: 0,
+          right: 0,
+          bottom: 0,
+          margin: "auto",
+          backgroundColor: "#c62828",
+          borderRadius: "50%",
+        },
+      },
+    },
+    trainColorBlue: {
+      path: {
+        fill: "#0277bd",
+      },
+    },
+    trainColorPink: {
+      path: {
+        fill: "#8e24aa",
+      },
+    },
   },
-  panelCards
+  panelCards,
+  {
+    labelWidth: {
+      maxWidth: "120px",
+    },
+    labelWidth2: {
+      maxWidth: "140px",
+    },
+    spannerIcon: {
+      width: "16px",
+      height: "16px",
+      verticalAlign: "middle",
+      marginRight: "3px",
+    },
+  }
 );

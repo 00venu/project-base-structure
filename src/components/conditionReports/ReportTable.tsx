@@ -2,8 +2,9 @@ import React from "react";
 import { useTable, usePagination, useExpanded } from "react-table";
 import makeData from "./makeData";
 import { classNames } from "./classess";
+import { Icon } from "@fluentui/react/lib/Icon";
 
-const { tableWrap, pagination, collapse } = classNames;
+const { tableWrap, pagination, collapse, tableIcon } = classNames;
 
 const between = (x: any, min: any, max: any) => {
   return x >= min && x <= max;
@@ -161,7 +162,11 @@ const ReportTable = () => {
         collapse: true,
         Header: ({ getToggleAllRowsExpandedProps, isAllRowsExpanded }: any) => (
           <span {...getToggleAllRowsExpandedProps()}>
-            {isAllRowsExpanded ? "👇" : "👉"}
+            {/*isAllRowsExpanded ? (
+              <Icon iconName="Blocked2" className={tableIcon} />
+            ) : (
+              <Icon iconName="AddTo" className={tableIcon} />
+            )*/}
           </span>
         ),
         Cell: ({ row }: any) =>
@@ -173,7 +178,11 @@ const ReportTable = () => {
                 },
               })}
             >
-              {row.isExpanded ? "👇" : "👉"}
+              {row.isExpanded ? (
+                <Icon iconName="Blocked2" className={tableIcon} />
+              ) : (
+                <Icon iconName="AddTo" className={tableIcon} />
+              )}
             </span>
           ) : null,
       },
@@ -306,8 +315,6 @@ const ReportTable = () => {
       }),
     };
   });
-  console.log(dataRevised);
-
   return <Table columns={columns} data={dataRevised} />;
 };
 

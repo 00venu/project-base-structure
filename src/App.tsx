@@ -7,8 +7,10 @@ import List from "./components/list/List";
 import LandingPage from "./pages/landingPage/LandingPage";
 import OtherPage from "./pages/landingPage/OtherPage";
 import ConditionReports from "./pages/ConditionReports/ConditionReports";
-
+import { initializeIcons } from "@fluentui/font-icons-mdl2";
 import "./App.css";
+
+initializeIcons();
 
 const App = () => {
   return (
