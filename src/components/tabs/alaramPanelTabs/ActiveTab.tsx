@@ -5,6 +5,7 @@ import { Text } from "@fluentui/react/lib/Text";
 import { Stack } from "@fluentui/react/lib/Stack";
 import { Toggle } from "@fluentui/react/lib/Toggle";
 import { Icon } from "@fluentui/react/lib/Icon";
+import { Label, Pivot, PivotItem } from "@fluentui/react";
 import {
   classNames,
   TrainSvg,
@@ -88,6 +89,7 @@ const ActiveTab = (props: any) => {
     trainColorBlue,
     trainColorPink,
     noData,
+    tabParent,
   } = classNames;
   interface CardList {
     defect_id: string;
@@ -209,37 +211,78 @@ const ActiveTab = (props: any) => {
           onChange={ToggleChange}
         />
       </div>
-      <ul className={priorityButtons}>
-        <li className={activeButton}>
-          <span className={trainCircle}>
-            <UOSVG className={trainIcon} />
-          </span>
-          All <p>{activeData.length}</p>
-        </li>
-        <li>
-          <span className={[trainCircle, colorRed].join(" ")}>
-            <UOSVG className={trainIcon} />
-          </span>
-          High Priority <p>{pHighData.length}</p>
-        </li>
-        <li>
-          <span className={[trainCircle, colorOrange].join(" ")}>
-            <UOSVG className={trainIcon} />
-          </span>
-          Low Priority <p>{pLowData.length}</p>
-        </li>
-      </ul>
-      <div className={cardsParent} style={{ height: "55vh" }}>
-        {activeData.length ? (
-          <FocusZone direction={FocusZoneDirection.vertical}>
-            <List items={activeData} onRenderCell={onRenderCell} />
-          </FocusZone>
-        ) : (
-          <div className={noData}>
-            <Icon iconName="sad" />
-            <h3>No Data</h3>
-          </div>
-        )}
+      <div className={tabParent}>
+        <Pivot aria-label="Links of Tab Style Pivot Example" linkFormat="tabs">
+          <PivotItem
+            onRenderItemLink={() => (
+              <>
+                <span className={trainCircle}>
+                  <UOSVG className={trainIcon} />
+                </span>
+                All <p>{activeData.length}</p>
+              </>
+            )}
+          >
+            <div className={cardsParent}>
+              {activeData.length ? (
+                <FocusZone direction={FocusZoneDirection.vertical}>
+                  <List items={activeData} onRenderCell={onRenderCell} />
+                </FocusZone>
+              ) : (
+                <div className={noData}>
+                  <Icon iconName="sad" />
+                  <h3>No Data</h3>
+                </div>
+              )}
+            </div>
+          </PivotItem>
+          <PivotItem
+            onRenderItemLink={() => (
+              <>
+                <span className={[trainCircle, colorRed].join(" ")}>
+                  <UOSVG className={trainIcon} />
+                </span>
+                High Priority <p>{pHighData.length}</p>
+              </>
+            )}
+          >
+            <div className={cardsParent}>
+              {pHighData.length ? (
+                <FocusZone direction={FocusZoneDirection.vertical}>
+                  <List items={pHighData} onRenderCell={onRenderCell} />
+                </FocusZone>
+              ) : (
+                <div className={noData}>
+                  <Icon iconName="sad" />
+                  <h3>No Data</h3>
+                </div>
+              )}
+            </div>
+          </PivotItem>
+          <PivotItem
+            onRenderItemLink={() => (
+              <>
+                <span className={[trainCircle, colorOrange].join(" ")}>
+                  <UOSVG className={trainIcon} />
+                </span>
+                Low Priority <p>{pLowData.length}</p>
+              </>
+            )}
+          >
+            <div className={cardsParent}>
+              {pLowData.length ? (
+                <FocusZone direction={FocusZoneDirection.vertical}>
+                  <List items={pLowData} onRenderCell={onRenderCell} />
+                </FocusZone>
+              ) : (
+                <div className={noData}>
+                  <Icon iconName="sad" />
+                  <h3>No Data</h3>
+                </div>
+              )}
+            </div>
+          </PivotItem>
+        </Pivot>
       </div>
     </>
   );

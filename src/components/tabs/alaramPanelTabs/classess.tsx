@@ -89,7 +89,7 @@ export const classNames: any = mergeStyleSets(
       height: "15px",
       position: "relative",
       display: "block",
-      border: "1px solid #666",
+      border: "2px solid #666",
       borderRadius: "50px",
       padding: "3px",
       marginRight: "5px",
@@ -105,13 +105,13 @@ export const classNames: any = mergeStyleSets(
       },
     },
     colorRed: {
-      border: "1px solid #c62828",
+      border: "2px solid #c62828",
       "svg path": {
         fill: "#c62828",
       },
     },
     colorOrange: {
-      border: "1px solid #ff8f00",
+      border: "2px solid #ff8f00",
       "svg path": {
         fill: "#ff8f00",
       },
@@ -195,6 +195,55 @@ export const classNames: any = mergeStyleSets(
         fontWeight: "normal",
       },
     },
+    tabParent: {
+      marginTop: "15px",
+      ".ms-FocusZone": {
+        display: "flex",
+        justifyContent: "space-between",
+        button: {
+          height: "39px",
+          flexGrow: 1,
+          position: "relative",
+          boxSizing: "border-box",
+          padding: "inherit 8px inherit 10px",
+          borderRadius: "3px",
+          color: "#fff",
+          // backgroundColor: "#18181d",
+          selectors: {
+            "& .ms-FocusZone button:first-child": {
+              marginLeft: 0,
+            },
+            "& .ms-FocusZone button:hover": {
+              color: "#fff",
+              backgroundColor: "#333D3D !important",
+            },
+          },
+          p: {
+            paddingLeft: "10px",
+          },
+        },
+        ".is-selected": {
+          backgroundColor: "#333D3D !important",
+          position: "relative",
+          selectors: {
+            ":after": {
+              width: "16px",
+              height: "16px",
+              content: "'▼'",
+              position: "absolute",
+              bottom: "1px",
+              left: 0,
+              right: 0,
+              margin: "auto",
+              color: "#333D3D",
+              fontSize: "14px",
+              visibility: "visible !important",
+              overflow: "visible !important",
+            },
+          },
+        },
+      },
+    },
   },
   panelCards,
   {
@@ -209,6 +258,11 @@ export const classNames: any = mergeStyleSets(
       height: "16px",
       verticalAlign: "middle",
       marginRight: "3px",
+    },
+    cardsParent: {
+      height: "48vh !important",
+      overflow: "auto",
+      marginTop: "20px",
     },
   }
 );
