@@ -4,6 +4,7 @@ import { List } from "@fluentui/react/lib/List";
 import { Text } from "@fluentui/react/lib/Text";
 import { Stack } from "@fluentui/react/lib/Stack";
 import { Toggle } from "@fluentui/react/lib/Toggle";
+import { Icon } from "@fluentui/react/lib/Icon";
 import {
   classNames,
   TrainSvg,
@@ -16,20 +17,56 @@ import {
 
 const ActiveTab = (props: any) => {
   const [activeData, setActiveData]: any = useState(activeTabData);
-  const [pLowData, setPLowData] = useState([]);
-  const [pHighData, setPHighData] = useState([]);
+  const [pLowData, setPLowData]: any = useState([]);
+  const [pHighData, setPHighData]: any = useState([]);
+  const [alarmData, setAlarmData]: any = useState([]);
+  const [eventData, setEventData]: any = useState([]);
+  const [alertData, setAlertData]: any = useState([]);
+  const [filterValues, setFilterValues] = useState({
+    alarm: true,
+    event: true,
+    alert: true,
+  });
 
   const filterItems = (key: any, value: any) => {
+    return activeData.filter(
+      (v: any) => v[key].toString().toLocaleLowerCase() === value
+    );
+  };
+  const filterActiveItems = (key: any, value: any) => {
     return activeTabData.filter(
       (v: any) => v[key].toString().toLocaleLowerCase() === value
     );
   };
+  useEffect(() => {
+    const alarmFilterData = filterActiveItems("type", "alarm");
+    const evenFiltertData = filterActiveItems("type", "event");
+    const alertFilterData = filterActiveItems("type", "alert");
+    setAlarmData(alarmFilterData);
+    setEventData(evenFiltertData);
+    setAlertData(alertFilterData);
+  }, []);
   useEffect(() => {
     const lowData: any = filterItems("priority", "low");
     const highData: any = filterItems("priority", "high");
     setPLowData(lowData);
     setPHighData(highData);
   }, [activeData]);
+
+  useEffect(() => {
+    const revisedData = activeTabData.filter((item, i) => {
+      return (
+        (filterValues.alarm &&
+          item.type.toString().toLocaleLowerCase() === "alarm") ||
+        (filterValues.event &&
+          item.type.toString().toLocaleLowerCase() === "event") ||
+        (filterValues.alert &&
+          item.type.toString().toLocaleLowerCase() === "alert")
+      );
+    });
+    console.log(revisedData);
+    setActiveData(revisedData);
+  }, [filterValues]);
 
   const {
     card,
@@ -50,6 +87,7 @@ const ActiveTab = (props: any) => {
     spannerIcon,
     trainColorBlue,
     trainColorPink,
+    noData,
   } = classNames;
   interface CardList {
     defect_id: string;
@@ -61,10 +99,8 @@ const ActiveTab = (props: any) => {
     is_sn_raised: any;
     sn_status: any;
     unit_status: any;
+    name: any;
   }
-  const alarmData = filterItems("type", "alarm");
-  const eventData = filterItems("type", "event");
-  const alertData = filterItems("type", "alert");
 
   const spanerIconFn = (is_sn_raised: any, sn_status: any) => {
     if (!is_sn_raised) {
@@ -79,6 +115,21 @@ const ActiveTab = (props: any) => {
     let val = unit_status.toString().toLowerCase();
     return val.includes("operation");
   };
+  const ToggleChange = (
+    ev: React.MouseEvent<HTMLElement>,
+    checked?: boolean
+  ) => {
+    const id = ev.currentTarget["id"];
+    if (id) {
+      setFilterValues((state) => {
+        return {
+          ...state,
+          [id]: checked,
+        };
+      });
+    }
+  };
+
   const onRenderCell = (
     item: CardList | undefined,
     index: number | undefined
@@ -139,9 +190,24 @@ const ActiveTab = (props: any) => {
   return (
     <>
       <div className={buttonParent}>
-        <Toggle defaultChecked label={`Alarm (${alarmData.length})`} />
-        <Toggle defaultChecked label={`Events (${eventData.length})`} />
-        <Toggle defaultChecked label={`Alerts (${alertData.length})`} />
+        <Toggle
+          id="alarm"
+          defaultChecked
+          label={`Alarm (${alarmData.length})`}
+          onChange={ToggleChange}
+        />
+        <Toggle
+          id="event"
+          defaultChecked
+          label={`Events (${eventData.length})`}
+          onChange={ToggleChange}
+        />
+        <Toggle
+          id="alert"
+          defaultChecked
+          label={`Alerts (${alertData.length})`}
+          onChange={ToggleChange}
+        />
       </div>
       <ul className={priorityButtons}>
         <li className={activeButton}>
@@ -164,9 +230,16 @@ const ActiveTab = (props: any) => {
         </li>
       </ul>
       <div className={cardsParent} style={{ height: "55vh" }}>
-        <FocusZone direction={FocusZoneDirection.vertical}>
-          <List items={activeData} onRenderCell={onRenderCell} />
-        </FocusZone>
+        {activeData.length ? (
+          <FocusZone direction={FocusZoneDirection.vertical}>
+            <List items={activeData} onRenderCell={onRenderCell} />
+          </FocusZone>
+        ) : (
+          <div className={noData}>
+            <Icon iconName="sad" />
+            <h3>No Data</h3>
+          </div>
+        )}
       </div>
     </>
   );

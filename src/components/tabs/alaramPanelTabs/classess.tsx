@@ -185,6 +185,16 @@ export const classNames: any = mergeStyleSets(
         fill: "#8e24aa",
       },
     },
+    noData: {
+      textAlign: "center",
+      fontSize: "22px",
+      color: "#008B98",
+      paddingTop: "20px",
+      h3: {
+        fontSize: "18px",
+        fontWeight: "normal",
+      },
+    },
   },
   panelCards,
   {

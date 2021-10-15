@@ -56,6 +56,25 @@ export const data = [
     is_sn_raised: true,
     sn_status: "OPEN",
   },
+  {
+    defect_id: "D-1236-DVA",
+    defect_description: "Fault in Digital Voice Announcement",
+    functional_location: "TSNSW-RS-D-D104",
+    unit_status: "In Service-Operational",
+    fault_condition: "Breakdown",
+    mode: "Stabled",
+    equipment: "Car1",
+    subsystem: "CASS",
+    component: "Air Condition",
+    date: "26/09/2020",
+    time: "11:04 AM",
+    priority: "HIGH",
+    type: "alert",
+    isAcknowledged: false,
+    isIsolated: false,
+    is_sn_raised: true,
+    sn_status: "OPEN",
+  },
 ];
 
 export const activeTabData = data.filter(
