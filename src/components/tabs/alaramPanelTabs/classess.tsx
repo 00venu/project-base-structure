@@ -8,7 +8,7 @@ export const classNames: any = mergeStyleSets(
       ".ms-Pivot-link": {
         padding: 0,
         margin: "0 5px",
-        color: "#008B98",
+        color: "#fff",
         fontSize: "14px",
         fontWeight: "600",
         selectors: {
@@ -18,8 +18,10 @@ export const classNames: any = mergeStyleSets(
           },
         },
       },
+      ".is-selected": {
+        color: "#008B98",
+      },
     },
-
     customTabs: {
       display: "flex",
       justifyContent: "space-between",
@@ -197,7 +199,7 @@ export const classNames: any = mergeStyleSets(
     },
     tabParent: {
       marginTop: "15px",
-      ".ms-FocusZone": {
+      ".ms-Pivot--tabs": {
         display: "flex",
         justifyContent: "space-between",
         button: {
@@ -220,6 +222,8 @@ export const classNames: any = mergeStyleSets(
           },
           p: {
             paddingLeft: "10px",
+            flexGrow: " 1",
+            textAlign: "right",
           },
         },
         ".is-selected": {
@@ -231,7 +235,7 @@ export const classNames: any = mergeStyleSets(
               height: "16px",
               content: "'▼'",
               position: "absolute",
-              bottom: "1px",
+              bottom: "5px",
               left: 0,
               right: 0,
               margin: "auto",
@@ -243,6 +247,10 @@ export const classNames: any = mergeStyleSets(
           },
         },
       },
+    },
+    toggleSize: {
+      height: "18px",
+      width: "32px",
     },
   },
   panelCards,
