@@ -1,0 +1,74 @@
+@font-face {
+  font-family: "roboto-med";
+  src: url(./assets/Roboto/Roboto-Medium.ttf);
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "roboto-reg";
+  src: url(./assets/Roboto/Roboto-Regular.ttf);
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "roboto-bold";
+  src: url(./assets/Roboto/Roboto-Bold.ttf);
+  font-style: normal;
+}
+
+html,
+body {
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  font-family: "roboto-reg" !important;
+  font-size: 14px;
+}
+
+h1,
+h3,
+ul,
+li {
+  padding: 0;
+  margin: 0;
+}
+h3 {
+  font-family: "roboto-bold";
+  font-weight: normal;
+  font-size: 14px;
+}
+li {
+  list-style: none;
+}
+li a {
+  text-decoration: none;
+}
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  padding: 4px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+  background-color: #666;
+}
+.ms-Pivot-overflowMenuButton .ms-Button-flexContainer {
+  position: relative;
+}
+.ms-Pivot-overflowMenuButton .ms-Button-flexContainer:after {
+  content: "▼";
+  position: absolute;
+  bottom: -5px;
+  right: -3px;
+  color: #008b98;
+  font-size: 10px;
+}
