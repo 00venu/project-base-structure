@@ -6,6 +6,7 @@ import {
   SearchIcon,
   TrainAlert,
   AlaramPanelTabs,
+  Exporticon,
 } from "./";
 
 const MaximizedAlaramPanel = ({ alaramPanelHandler }: any) => {
@@ -18,6 +19,7 @@ const MaximizedAlaramPanel = ({ alaramPanelHandler }: any) => {
     searchIcon,
     trainAlertParent,
     mb20,
+    cursor,
   } = classNames;
   const [anim, setAnim] = useState(maximizedPanelOpen);
   const [details, setDetails] = useState(true);
@@ -40,6 +42,7 @@ const MaximizedAlaramPanel = ({ alaramPanelHandler }: any) => {
           <div className={[panelHeaderContainer, mb20].join(" ")}>
             <h3>Alarms, Alerts and Events Summary</h3>
             <SearchIcon className={searchIcon} />
+            <Exporticon className={cursor} />
             <RoundButton text="Show All" />
           </div>
           <AlaramPanelTabs showDetails={showDetails} />

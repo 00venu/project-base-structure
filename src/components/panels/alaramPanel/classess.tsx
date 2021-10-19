@@ -70,5 +70,16 @@ export const classNames: any = mergeStyleSets(
       marginBottom: "20px",
     },
   },
-  panelCards
+  panelCards,
+  {
+    searchIcon: {
+      width: "20px",
+      height: "20px",
+      marginRight: 0,
+      cursor: "pointer",
+    },
+    cursor: {
+      cursor: "pointer",
+    },
+  }
 );

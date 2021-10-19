@@ -22,6 +22,7 @@ export const classNames: any = mergeStyleSets(
         color: "#008B98",
       },
     },
+
     customTabs: {
       display: "flex",
       justifyContent: "space-between",
@@ -47,6 +48,22 @@ export const classNames: any = mergeStyleSets(
       backgroundColor: "#18181d",
       padding: "15px 10px 10px 10px",
       borderRadius: "3px",
+      ".ms-Toggle": {
+        position: "relative",
+        selectors: {
+          ":after": {
+            content: "''",
+            position: "absolute",
+            top: 0,
+            bottom: 0,
+            right: "-10%",
+            borderRight: "1px solid #666",
+          },
+          "& .ms-Toggle:last-child:after": {
+            border: 0,
+          },
+        },
+      },
       label: {
         paddingLeft: "10px",
       },
