@@ -137,7 +137,7 @@ const ActiveTab = (props: any) => {
     index: number | undefined
   ): JSX.Element => {
     return (
-      <div className={card} onClick={props.showDetails}>
+      <div className={card} onClick={()=>props.showDetails(item?.priority)}>
         <div className={cardHeaderContainer} style={{ paddingBottom: "10px" }}>
           <ul>
             <li>

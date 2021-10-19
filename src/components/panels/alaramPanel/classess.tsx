@@ -4,23 +4,25 @@ import { panelCards } from "../serviceNotificationPanel/classess";
 export const classNames: any = mergeStyleSets(
   {
     minimizedAlaramPanel: {
-      width: "45px",
+      // width: "50%",
       height: "100%",
-      paddingTop: "40px",
-      backgroundColor: "#26262D",
-      position: "fixed",
-      top: "60px",
-      right: 0,
-      bottom: 0,
-      zIndex: "1",
+      paddingTop: "80px",
+      backgroundColor: "#26262D",      
       borderTop: "1px solid #666",
       textAlign: "center",
+  
     },
     textRotation: {
       transform: "rotate(-90deg)",
       color: "#F5F5F5",
       whiteSpace: "nowrap",
       marginTop: "25px",
+    },
+    arrowRotation: {
+      transform: "rotate(-270deg)",          
+    },
+    arrowRotation90: {
+      transform: "rotate(-90deg)",          
     },
     textContainer: {
       marginTop: "25px",
@@ -34,28 +36,20 @@ export const classNames: any = mergeStyleSets(
         margin: "auto",
       },
     },
+   
     leftArrow: {
-      cursor: "pointer",
-      position: "absolute",
-      top: "30px",
-      left: "-20px",
-      bottom: 0,
-    },
-    maximizedAlaramPanel: {
-      width: "30%",
-      height: "100%",
       backgroundColor: "#26262D",
-      position: "fixed",
-      top: "60px",
-      right: 0,
-      bottom: 0,
-      zIndex: "998",
+      borderTop: "1px solid #666",
+    },
+    maximizedAlaramPanel: {    
+      height: "95vh",
+      backgroundColor: "#26262D",     
       borderTop: "1px solid #666",
       padding: "20px 10px",
       boxSizing: "border-box",
     },
     maximizedPanelOpen: {
-      ...AnimationStyles.slideLeftIn400,
+      ...AnimationStyles.slideRightIn400,
     },
     maximizedPanelClose: {
       ...AnimationStyles.slideRightOut400,
@@ -69,6 +63,7 @@ export const classNames: any = mergeStyleSets(
     mb20: {
       marginBottom: "20px",
     },
+  
   },
   panelCards,
   {
@@ -77,9 +72,13 @@ export const classNames: any = mergeStyleSets(
       height: "20px",
       marginRight: 0,
       cursor: "pointer",
+      verticalAlign:'middle'
     },
     cursor: {
       cursor: "pointer",
+      margin:'0 15px',
+      verticalAlign:'middle'
+
     },
   }
 );

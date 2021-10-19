@@ -2,7 +2,7 @@ import { mergeStyleSets } from "@fluentui/react/lib/Styling";
 
 export const classNames = mergeStyleSets({
   leftNav: {
-    width: "50px",
+    width:  "3.125%",
     height: "100%",
     backgroundColor: "#141414",
     position: "fixed",

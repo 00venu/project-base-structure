@@ -4,13 +4,20 @@ import { panelCards } from "../../panels/serviceNotificationPanel/classess";
 
 export const classNames: any = mergeStyleSets(
   {
+    
     linkIsSelected: {
+      '.ms-Pivot[role="tablist"]':{
+        display:'flex',
+        justifyContent:'space-between',
+        borderBottom:'1px solid #666'
+      },
       ".ms-Pivot-link": {
         padding: 0,
         margin: "0 5px",
         color: "#fff",
         fontSize: "14px",
         fontWeight: "600",
+       
         selectors: {
           "& .ms-Pivot-link:hover": {
             background: "transparent",
@@ -56,7 +63,7 @@ export const classNames: any = mergeStyleSets(
             position: "absolute",
             top: 0,
             bottom: 0,
-            right: "-10%",
+            right: "-35%",
             borderRight: "1px solid #666",
           },
           "& .ms-Toggle:last-child:after": {
@@ -216,10 +223,14 @@ export const classNames: any = mergeStyleSets(
     },
     tabParent: {
       marginTop: "15px",
+      '.ms-Pivot[role="tablist"]':{
+        borderBottom:0,
+      },
       ".ms-Pivot--tabs": {
         display: "flex",
         justifyContent: "space-between",
         button: {
+          minWidth:'30%',
           height: "39px",
           flexGrow: 1,
           position: "relative",
@@ -227,6 +238,7 @@ export const classNames: any = mergeStyleSets(
           padding: "inherit 8px inherit 10px",
           borderRadius: "3px",
           color: "#fff",
+         
           // backgroundColor: "#18181d",
           selectors: {
             "& .ms-FocusZone button:first-child": {
@@ -273,7 +285,7 @@ export const classNames: any = mergeStyleSets(
   panelCards,
   {
     labelWidth: {
-      maxWidth: "120px",
+      maxWidth: "100%",
     },
     labelWidth2: {
       maxWidth: "140px",

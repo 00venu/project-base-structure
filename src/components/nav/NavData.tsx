@@ -19,58 +19,58 @@ export const navData = [
   {
     name: "Unit Overview",
     icon: <UOSVG />,
-    path: "/otherPage",
+    path: "/UnitOverview",
   },
   {
     name: "Alarms & Events",
     icon: <AlarmSVG />,
-    path: "/test2",
+    path: "/AlarmOverview",
     tip: <NavArrow />,
     subNav: [
       {
         name: "Alarm Overview",
-        path: "/test3",
+        path: "/AlarmOverview",
       },
       {
-        name: "Service Notifications",
-        path: "/test17",
+        name: "Maintenance Log",
+        path: "/MaintenanceLog",
       },
       {
         name: "Custom Logic Builder",
-        path: "/test18",
+        path: "/CustomLogicBuilder",
       },
     ],
   },
   {
     name: "Maintenance Facility",
     icon: <MaintSVG />,
-    path: "/test5",
+    path: "/MaintenanceFacility",
   },
   {
     name: "Simulator",
     icon: <SimuSVG />,
-    path: "/test6",
+    path: "/Simulator",
   },
   {
     name: "Process Viewer",
     icon: <PVSVG />,
-    path: "/test7",
+    path: "/LiveProcessViewer",
     tip: <NavArrow />,
     subNav: [
       {
         name: "Live Process Viewer",
-        path: "/test8",
+        path: "/LiveProcessViewer",
       },
       {
         name: "Historical Process Viewer",
-        path: "/test9",
+        path: "/HistoricalProcessViewer",
       },
     ],
   },
   {
     name: "Log Viewer",
     icon: <LVSVG />,
-    path: "/test10",
+    path: "/LogViewer",
   },
   {
     name: "Reports",
@@ -80,20 +80,13 @@ export const navData = [
     subNav: [
       {
         name: "Defect Investigation",
-        path: "/test12",
+        path: "/DefectInvestigation",
       },
       {
-        name: "Condition Reports",
-        path: "/conditionReports",
+        name: "Diagnostics",
+        path: "/Diagnostics",
       },
-      {
-        name: "Status Reports",
-        path: "/test15",
-      },
-      {
-        name: "Customer Notification",
-        path: "/test16",
-      },
+      
     ],
   },
 ];

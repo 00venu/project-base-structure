@@ -6,18 +6,20 @@ import { Stack } from "@fluentui/react/lib/Stack";
 import {
   classNames,
   CloseLeftarrow,
+  UpArrow,
   RoundButton,
   SearchIcon,
   TrainSvg,
   DummyData,
 } from "./";
 
-const MaximizedPanel = ({ servicePanelHandler }: any) => {
+const MaximizedPanel = (props : any) => {
   const {
     maximizedPanel,
     maximizedPanelOpen,
     maximizedPanelClose,
     leftArrowClose,
+    arrowRotation,
     panelHeaderContainer,
     searchIcon,
     cardsParent,
@@ -32,7 +34,7 @@ const MaximizedPanel = ({ servicePanelHandler }: any) => {
 
   const animHandler = () => {
     setAnim(maximizedPanelClose);
-    setTimeout(() => servicePanelHandler(), 0);
+    setTimeout(() => props.servicePanelHandler(), 0);
   };
 
   interface CardList {
@@ -48,7 +50,10 @@ const MaximizedPanel = ({ servicePanelHandler }: any) => {
     index: number | undefined
   ): JSX.Element => {
     return (
-      <div className={card}>
+      <div className={card} onClick={()=>{
+        props.servicePaneldata(item)
+        
+      }}>
         <div className={cardHeaderContainer}>
           <ul>
             <li>
@@ -58,7 +63,13 @@ const MaximizedPanel = ({ servicePanelHandler }: any) => {
                 </Text>
               </Stack>
             </li>
-            <li>{item?.text2}</li>
+            <li>
+              <Stack>
+                <Text nowrap className={labelWidth}>
+                  {item?.text2}
+                </Text>
+              </Stack>
+            </li>
           </ul>
           <ul>
             <li>{item?.date}</li>
@@ -87,8 +98,11 @@ const MaximizedPanel = ({ servicePanelHandler }: any) => {
   };
 
   return (
-    <div className={[maximizedPanel, anim].join(" ")}>
-      <CloseLeftarrow className={leftArrowClose} onClick={animHandler} />
+    <section className="ms-Grid">
+      <div className="ms-Grid-row">
+        <div className="ms-Grid-col ms-xl11 ms-xxl11 ms-xxxl11">
+        <div className={[maximizedPanel, anim].join(" ")}>
+  
       <div className={panelHeaderContainer}>
         <h3>Unsubmitted Service Notifications</h3>
         <SearchIcon className={searchIcon} />
@@ -100,6 +114,13 @@ const MaximizedPanel = ({ servicePanelHandler }: any) => {
         </FocusZone>
       </div>
     </div>
+        </div>
+        <div className="ms-Grid-col ms-xl1 ms-xxl1 ms-xxxl1 leftArrow">
+        <UpArrow className={[leftArrowClose, arrowRotation].join(" ")} onClick={animHandler} />
+          </div>
+      </div>
+    
+    </section>
   );
 };
 

@@ -18,7 +18,7 @@ export const classNames = mergeStyleSets({
     marginLeft: "24px",
   },
   hamberger: {
-    width: "50px",
+    width: " 3.125%",
     height: "100%",
     backgroundColor: "#141414",
     position: "relative",

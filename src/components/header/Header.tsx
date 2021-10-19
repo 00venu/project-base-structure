@@ -9,12 +9,14 @@ import {
   useOnClickOutside,
   classNames,
 } from "./";
+import ServiceNotification from "../panels/createServiceNotification";
 
 const NavOverlay: any = lazy(() => import("../nav/navOverlay/NavOverlay"));
 
-const Header = () => {
+const Header = ({ createPanelHandler }: any) => {
   const [userDrop, setUserDrop] = useState(false);
   const [hamNav, setHamNav] = useState(false);
+  const [createPanelState, seCreatePanelState] = useState(true);
   const {
     header,
     hamberger,
@@ -46,8 +48,16 @@ const Header = () => {
     setHamNav((state) => !state);
   };
 
+  const createPanelOpenHandler = () => {
+   
+    setTimeout(() => createPanelHandler(), 0);
+  };
+
   return (
     <div className={header}>
+        {/* <div>
+        <ServiceNotification create={createPanelState} />
+      </div> */}
       <div className={hamberger} onClick={hambergerHandler} ref={refHam}>
         {hamNav ? (
           <>
@@ -66,8 +76,8 @@ const Header = () => {
       <div className={headerRight}>
         <div className={updateInfo}>Last Updated: 05/01/2021 09:20 AM </div>
         <RefreshIcon className={refreshIcon} />
-        <DefaultButton className={defaultBtn} type="submit" onClick={() => {}}>
-          + Create Service Notification
+        <DefaultButton className={defaultBtn} type="submit" onClick={() => createPanelOpenHandler()}>
+          + Create Ticket
         </DefaultButton>
         <div className={userDropdown} onClick={userDropHandler} ref={ref}>
           <div>

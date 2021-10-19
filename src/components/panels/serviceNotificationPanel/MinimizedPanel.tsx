@@ -1,18 +1,20 @@
-import { LockIcon, AlarmBackground, Rightarrow, classNames } from "./";
+import { LockIcon, AlarmBackground, Rightarrow, classNames, UpArrow } from "./";
 
 const MinimizedPanel = ({ servicePanelHandler }: any) => {
-  const { minimizedPanel, textRotation, textContainer, leftArrow } = classNames;
+  const { minimizedPanel, textRotation, textContainer, leftArrow , arrowRotation90,countRotation} = classNames;
   return (
     <div className={minimizedPanel}>
-      <LockIcon />
-      <div className={textRotation}>Unsubmitted Service Notifications</div>
-      <div className={textContainer}>
+      <UpArrow onClick={servicePanelHandler} className={arrowRotation90}/>
+    
+      <div className={textRotation}>Tickets Summary</div>
+      <div className={[textContainer, countRotation].join(" ")}>
+     
         <AlarmBackground />
         <span>30</span>
       </div>
-      <div className={leftArrow}>
+      {/* <div className={leftArrow}>
         <Rightarrow onClick={servicePanelHandler} />
-      </div>
+      </div> */}
     </div>
   );
 };

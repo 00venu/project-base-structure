@@ -10,6 +10,7 @@ export const panelCards: any = {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
+    padding:"0px 5px",
     h3: {
       fontFamily: "roboto-reg",
     },
@@ -88,20 +89,84 @@ export const panelCards: any = {
   labelWidth2: {
     maxWidth: "140px",
   },
+  service_data_class:{
+    border: "solid  gray 1px ",
+    paddingLeft:"5px",
+    
+    
+    
+      },
+      notificationcontainer:{
+        paddingTop: "60px",
+        overflow:"hidden"
+        
+    
+        
+      },
+      LongText:{
+    marginTop:"10px",
+    padding:"20px"
+      },
+      service_links:{
+        color:"teal",
+        
+        marginTop:"30px",
+        padding:"15px",
+    
+      },
+      description_body:{
+        backgroundColor: "#2E2E33",
+        
+      },
+      filled_button:{
+       
+        border: "1px solid #008B98",
+        boxSizing: "border-box",
+        lineHeight: " 16px",
+        borderRadius: " 50px",
+        color: "white",
+        whiteSpace: "nowrap",
+        backgroundColor: "darkcyan",
+        padding:"5px",
+        width:"130px"
+       },
+       service_column_class:{
+    borderRight:"1px solid gray",
+    
+    
+    
+       },
+    
+       
+       DescrptionParent: {
+        height: "78vh",
+        overflow: "auto",
+        marginTop: "20px",
+     
+      },
+       DescriptionHeader:{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        borderBottom:"solid gray 1px",
+        borderTop:"solid gray 1px",
+        padding:"12px"
+       },
+     
 };
 
 export const classNames: any = mergeStyleSets(
   {
-    minimizedPanel: {
-      width: "45px",
+    minimizedPanel: {   
+      // width: "50%",
       height: "100%",
-      paddingTop: "40px",
-      backgroundColor: "#26262D",
-      position: "fixed",
-      top: "60px",
-      left: "50px",
-      bottom: 0,
-      zIndex: "997",
+      paddingTop: "80px",
+      backgroundColor: "#333D3D;",
+      // position: "fixed",
+      // top: "60px",
+      // left: "50px",
+      // bottom: 0,
+      // zIndex: "997",
       borderTop: "1px solid #666",
       textAlign: "center",
     },
@@ -109,7 +174,16 @@ export const classNames: any = mergeStyleSets(
       transform: "rotate(-90deg)",
       color: "#F5F5F5",
       whiteSpace: "nowrap",
-      marginTop: "190px",
+      marginTop: "90px",
+    },
+    countRotation:{
+      transform: "rotate(-90deg)",
+    },
+    arrowRotation: {
+      transform: "rotate(-270deg)",          
+    },
+    arrowRotation90: {
+      transform: "rotate(-90deg)",          
     },
     textContainer: {
       marginTop: "30px",
@@ -131,25 +205,23 @@ export const classNames: any = mergeStyleSets(
       bottom: 0,
     },
     maximizedPanel: {
-      width: "300px",
+      // width: "300px",
       height: "100%",
       backgroundColor: "#26262D",
-      position: "fixed",
-      top: "60px",
-      left: "50px",
-      bottom: 0,
-      zIndex: "998",
+      // position: "fixed",
+      // top: "60px",
+      // left: "50px",
+      // bottom: 0,
+      // zIndex: "998",
       borderTop: "1px solid #666",
       padding: "20px 10px",
       boxSizing: "border-box",
     },
     leftArrowClose: {
       cursor: "pointer",
-      position: "absolute",
-      top: "30px",
-      right: "-20px",
-      bottom: 0,
+  
     },
+  
     maximizedPanelOpen: {
       ...AnimationStyles.slideRightIn400,
     },

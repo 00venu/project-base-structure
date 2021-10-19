@@ -1,0 +1,15 @@
+ .ms-Grid-col{padding:0px !important} 
+/* .layoutBody{display: flex;} */
+.panelOne{ width: 3.125%;height: 95vh; }
+.panelTwo{ width: 6.5%;}
+.panelNine{width: 90.62%;}
+.panelSix{ width: 65.1%;}
+.panelEight{ width: 72.5%;}
+.panelFive { width: 46.9%  !important;}
+.panelThree{ width: 21.25%; margin-top: 60px; height: 95vh;} 
+/* .panelThree{ width: 23.4%; margin-top: 60px; height: 95vh;} */
+.panelFour{ width: 28.6%; margin-top: 60px; height: 95vh;}
+.hidden{display:none}
+.leftArrow {
+    background-color: #26262D; height: 95vh;   border-top: 1px solid #666;    display: flex;    justify-content: center;    width: 5%;
+    margin-left: 0px;    padding-top: 27px !important;    margin-left: 1px;  }

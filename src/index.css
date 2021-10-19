@@ -1,18 +1,18 @@
 @font-face {
   font-family: "roboto-med";
-  src: url(./components/assets/Roboto/Roboto-Medium.ttf);
+  src: url(./assets/Roboto/Roboto-Medium.ttf);
   font-style: normal;
 }
 
 @font-face {
   font-family: "roboto-reg";
-  src: url(./components/assets/Roboto/Roboto-Regular.ttf);
+  src: url(./assets/Roboto/Roboto-Regular.ttf);
   font-style: normal;
 }
 
 @font-face {
   font-family: "roboto-bold";
-  src: url(./components/assets/Roboto/Roboto-Bold.ttf);
+  src: url(./assets/Roboto/Roboto-Bold.ttf);
   font-style: normal;
 }
 
@@ -72,5 +72,3 @@ li a {
   color: #008b98;
   font-size: 10px;
 }*/
-
-
