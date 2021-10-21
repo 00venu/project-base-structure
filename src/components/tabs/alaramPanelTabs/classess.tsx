@@ -286,6 +286,7 @@ export const classNames: any = mergeStyleSets(
   {
     labelWidth: {
       maxWidth: "100%",
+      textAlign:'left'
     },
     labelWidth2: {
       maxWidth: "140px",
@@ -301,5 +302,8 @@ export const classNames: any = mergeStyleSets(
       overflow: "auto",
       marginTop: "20px",
     },
+    cardHeaderContainer:{
+      alignItems:'flex-start'
+    }
   }
 );

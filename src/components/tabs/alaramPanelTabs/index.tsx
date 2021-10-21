@@ -4,7 +4,7 @@ export { ReactComponent as TrainSvg } from "../../../assets/img/serviceNotificat
 export { ReactComponent as UOSVG } from "../../../assets/img/nav/unit_overview.svg";
 export { ReactComponent as AlarmtrainIcon } from "../../../assets/img/alarms/alarmtrain.svg";
 export { default as RoundButton } from "../../button/RoundButton";
-export { default as ActiveTab } from "./ActiveTab";
+export {default as TabItem} from './TabItem';
 export {
   data,
   activeTabData,
