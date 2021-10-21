@@ -23,7 +23,7 @@ const AlaramPanelTabs = (props: any) => {
   const [isIsolatedData, setIsIsolated]: any = useState([]);
   const [loading, setLoading]: any = useState(false);
   const dispatch = useDispatch();
-
+  const { searchWord } = props;
   const labelStyles: Partial<IStyleSet<ILabelStyles>> = {
     root: { marginTop: 10 },
   };
@@ -45,23 +45,40 @@ const AlaramPanelTabs = (props: any) => {
 
 
   useEffect(() => {
-    if (alaramListData.length) {
-      const activeTabInfo = alaramListData.filter(
-        (v: any) => !v.isIsolated && typeof v.isAcknowledged === "boolean"
-      );
-      const acknowledgedTabInfo = alaramListData.filter(
-        (v: any) => v.isAcknowledged && v.isAcknowledged
-      );
-      const unacknowledgedInfo = alaramListData.filter(
-        (v: any) => !v.isAcknowledged && !v.isAcknowledged
-      );
-      const isIsolatedInfo = alaramListData.filter((v: any) => v.isIsolated && v.isIsolated);
-      setActiveTabData(activeTabInfo);
-      setAcknowledgedTabData(acknowledgedTabInfo);
-      setUnacknowledgedTabData(unacknowledgedInfo);
-      setIsIsolated(isIsolatedInfo)
+
+    const activeTabInfo = alaramListData.filter(
+      (v: any) => !v.isIsolated && typeof v.isAcknowledged === "boolean"
+    );
+    const acknowledgedTabInfo = alaramListData.filter(
+      (v: any) => v.isAcknowledged && v.isAcknowledged
+    );
+    const unacknowledgedInfo = alaramListData.filter(
+      (v: any) => !v.isAcknowledged && !v.isAcknowledged
+    );
+    const isIsolatedInfo = alaramListData.filter((v: any) => v.isIsolated && v.isIsolated);
+    setActiveTabData(activeTabInfo);
+    setAcknowledgedTabData(acknowledgedTabInfo);
+    setUnacknowledgedTabData(unacknowledgedInfo);
+    setIsIsolated(isIsolatedInfo)
+
+  }, [alaramListData]);
+
+  useEffect(() => {
+    if (data && data.alarmData && data.alarmData.data && data.alarmData.data.AlarmsList && searchWord) {
+      let searchword = searchWord.toLowerCase();
+      const alaramList = data.alarmData.data.AlarmsList.value.data;
+      const searchResult: any = alaramList.filter((u: any) => {
+        return u.defect_description.toLowerCase().includes(searchword) || u.defect_id.toLowerCase().includes(searchword) || u.unit_status.toLowerCase().includes(searchword) || u.fault_condition.toLowerCase().includes(searchword) || u.functional_location.toLowerCase().includes(searchword)
+      });
+
+      setAlaramListData(searchResult);
     }
-  }, [alaramListData])
+    if (data && data.alarmData && data.alarmData.data && data.alarmData.data.AlarmsList && !searchWord) {
+      const alaramList = data.alarmData.data.AlarmsList.value.data;
+      setAlaramListData(alaramList);
+    }
+
+  }, [searchWord])
 
   return (
     <div>

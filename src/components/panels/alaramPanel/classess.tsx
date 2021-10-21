@@ -47,6 +47,7 @@ export const classNames: any = mergeStyleSets(
       borderTop: "1px solid #666",
       padding: "20px 10px",
       boxSizing: "border-box",
+      position:'relative'
     },
     maximizedPanelOpen: {
       ...AnimationStyles.slideRightIn400,
@@ -63,7 +64,19 @@ export const classNames: any = mergeStyleSets(
     mb20: {
       marginBottom: "20px",
     },
-  
+  searchBox:{
+    border:0,
+    position:'absolute',
+    top:'20px',
+    left:'10px',
+    right:'10px',
+    selectors:{
+      ':after':{
+        constent:"''",
+        border:0
+      }
+    }
+  }
   },
   panelCards,
   {

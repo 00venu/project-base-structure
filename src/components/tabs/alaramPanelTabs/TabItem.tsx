@@ -31,9 +31,9 @@ const TabItem = (props: any) => {
 
     const { tabItemData, loading } = props;
     useEffect(() => {
-        if (tabItemData.length) {
-            setActiveData(tabItemData)
-        }
+
+        setActiveData(tabItemData)
+
     }, [tabItemData])
     const filterItems = (key: any, value: any) => {
         return activeData.filter(
@@ -46,14 +46,14 @@ const TabItem = (props: any) => {
         );
     };
     useEffect(() => {
-        if (tabItemData.length) {
-            const alarmFilterData = filterActiveItems("type", "alarm");
-            const evenFiltertData = filterActiveItems("type", "event");
-            const alertFilterData = filterActiveItems("type", "alert");
-            setAlarmData(alarmFilterData);
-            setEventData(evenFiltertData);
-            setAlertData(alertFilterData);
-        }
+
+        const alarmFilterData = filterActiveItems("type", "alarm");
+        const evenFiltertData = filterActiveItems("type", "event");
+        const alertFilterData = filterActiveItems("type", "alert");
+        setAlarmData(alarmFilterData);
+        setEventData(evenFiltertData);
+        setAlertData(alertFilterData);
+
     }, [tabItemData]);
     useEffect(() => {
         const lowData: any = filterItems("priority", "low");

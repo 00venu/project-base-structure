@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { SearchBox } from '@fluentui/react/lib/SearchBox';
 import {
   CloseRightarrow,
   classNames,
@@ -21,16 +22,46 @@ const MaximizedAlaramPanel = ({ alaramPanelHandler, showDetails }: any) => {
     searchIcon,
     trainAlertParent,
     mb20,
-    cursor
+    cursor,
+    searchBox
   } = classNames;
   const [anim, setAnim] = useState(maximizedPanelOpen);
-  
+  const [searchBoxVisable, setSearchBoxVisable]: any = useState(false);
+  const [searchWord, setSearchWord]: any = useState();
+
   const animHandler = () => {
     setAnim(maximizedPanelClose);
     setTimeout(() => alaramPanelHandler(), 0);
   };
- 
- 
+  const searchIconHandler = () => {
+    setSearchBoxVisable(true)
+  }
+  const closeSearchBoxHandler = () => {
+    setSearchBoxVisable(false)
+  }
+
+  function debounce<Params extends any[]>(
+    func: (...args: Params) => any,
+    timeout: number,
+  ): (...args: Params) => void {
+    let timer: NodeJS.Timeout
+    return (...args: Params) => {
+      clearTimeout(timer)
+      timer = setTimeout(() => {
+        func(...args)
+      }, timeout)
+    }
+  }
+
+  function test(message: any) {
+    setSearchWord(message);
+  }
+  const debouncedTest = debounce(test, 500);
+
+  const onSearchHandler = (val: any) => {
+    debouncedTest(val)
+  }
+
   return (
     <section className="ms-Grid">
       <div className="ms-Grid-row">
@@ -40,14 +71,14 @@ const MaximizedAlaramPanel = ({ alaramPanelHandler, showDetails }: any) => {
               <div className={[panelHeaderContainer, mb20].join(" ")}>
                 <h3>Alarms, Alerts and Events (AAE) Summary</h3>
                 <div >
-                  <SearchIcon className={searchIcon} />
+                  <SearchIcon className={searchIcon} onClick={searchIconHandler} />
                   <Exporticon className={cursor} />
                   <RoundButton text="Show All" />
                 </div>
               </div>
-              <AlaramPanelTabs showDetails={showDetails} />
+              <AlaramPanelTabs showDetails={showDetails} searchWord={searchWord} />
             </div>
-            
+            {searchBoxVisable ? <SearchBox placeholder="Enter Search Phrase" className={searchBox} onChange={(ev: any, val) => onSearchHandler(val)} onClear={closeSearchBoxHandler} onEscape={closeSearchBoxHandler} /> : null}
           </div>
         </div>
         <div className="ms-Grid-col ms-xl1 ms-xxl1 ms-xxxl1 leftArrow">
