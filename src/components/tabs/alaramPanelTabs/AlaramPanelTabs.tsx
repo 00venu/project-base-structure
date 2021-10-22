@@ -1,20 +1,10 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchAlarmRequest } from '../../../store/actions/alarmActions';
-import { fetchPostsRequest } from '../../../store/actions/listActions';
+import { useEffect, useState, useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAlarmRequest } from "../../../store/actions/alarmActions";
 
-import {
-  IStyleSet,
-  Label,
-  ILabelStyles,
-  Pivot,
-  PivotItem,
-} from "@fluentui/react";
+import { Pivot, PivotItem } from "@fluentui/react";
 
-import {
-  classNames,
-  TabItem
-} from "./";
+import { classNames, TabItem } from "./";
 const AlaramPanelTabs = (props: any) => {
   const [alaramListData, setAlaramListData]: any = useState([]);
   const [activeTabData, setActiveTabData]: any = useState([]);
@@ -24,28 +14,39 @@ const AlaramPanelTabs = (props: any) => {
   const [loading, setLoading]: any = useState(false);
   const dispatch = useDispatch();
   const { searchWord } = props;
-  const labelStyles: Partial<IStyleSet<ILabelStyles>> = {
-    root: { marginTop: 10 },
-  };
+
   const { linkIsSelected } = classNames;
 
   useEffect(() => {
-    dispatch(fetchAlarmRequest())
+    dispatch(fetchAlarmRequest());
   }, [dispatch]);
 
   const data: any = useSelector((state: any) => state.AlarmReducer);
 
   useEffect(() => {
-    if (data && data.alarmData && data.alarmData.data && data.alarmData.data.AlarmsList) {
+    if (
+      data &&
+      data.alarmData &&
+      data.alarmData.data &&
+      data.alarmData.data.AlarmsList
+    ) {
       const alaramList = data.alarmData.data.AlarmsList.value.data;
       setAlaramListData(alaramList);
+
+      const test = alaramList.map((u: any) => {
+        return {
+          ...u,
+          isAcknowledged: u.isAcknowledged.toString(),
+          isIsolated: u.isIsolated.toString(),
+          is_sn_raised: u.is_sn_raised.toString(),
+        };
+      });
+      props.getDownloadData(test);
     }
-    setLoading(data.loading)
+    setLoading(data.loading);
   }, [data]);
 
-
   useEffect(() => {
-
     const activeTabInfo = alaramListData.filter(
       (v: any) => !v.isIsolated && typeof v.isAcknowledged === "boolean"
     );
@@ -55,30 +56,48 @@ const AlaramPanelTabs = (props: any) => {
     const unacknowledgedInfo = alaramListData.filter(
       (v: any) => !v.isAcknowledged && !v.isAcknowledged
     );
-    const isIsolatedInfo = alaramListData.filter((v: any) => v.isIsolated && v.isIsolated);
+    const isIsolatedInfo = alaramListData.filter(
+      (v: any) => v.isIsolated && v.isIsolated
+    );
     setActiveTabData(activeTabInfo);
     setAcknowledgedTabData(acknowledgedTabInfo);
     setUnacknowledgedTabData(unacknowledgedInfo);
-    setIsIsolated(isIsolatedInfo)
-
+    setIsIsolated(isIsolatedInfo);
   }, [alaramListData]);
 
   useEffect(() => {
-    if (data && data.alarmData && data.alarmData.data && data.alarmData.data.AlarmsList && searchWord) {
+    if (
+      data &&
+      data.alarmData &&
+      data.alarmData.data &&
+      data.alarmData.data.AlarmsList &&
+      searchWord
+    ) {
       let searchword = searchWord.toLowerCase();
       const alaramList = data.alarmData.data.AlarmsList.value.data;
       const searchResult: any = alaramList.filter((u: any) => {
-        return u.defect_description.toLowerCase().includes(searchword) || u.defect_id.toLowerCase().includes(searchword) || u.unit_status.toLowerCase().includes(searchword) || u.fault_condition.toLowerCase().includes(searchword) || u.functional_location.toLowerCase().includes(searchword)
+        return (
+          u.defect_description.toLowerCase().includes(searchword) ||
+          u.defect_id.toLowerCase().includes(searchword) ||
+          u.unit_status.toLowerCase().includes(searchword) ||
+          u.fault_condition.toLowerCase().includes(searchword) ||
+          u.functional_location.toLowerCase().includes(searchword)
+        );
       });
 
       setAlaramListData(searchResult);
     }
-    if (data && data.alarmData && data.alarmData.data && data.alarmData.data.AlarmsList && !searchWord) {
+    if (
+      data &&
+      data.alarmData &&
+      data.alarmData.data &&
+      data.alarmData.data.AlarmsList &&
+      !searchWord
+    ) {
       const alaramList = data.alarmData.data.AlarmsList.value.data;
       setAlaramListData(alaramList);
     }
-
-  }, [searchWord])
+  }, [searchWord]);
 
   return (
     <div>
@@ -88,16 +107,34 @@ const AlaramPanelTabs = (props: any) => {
         overflowBehavior="menu"
       >
         <PivotItem headerText={`Active(${activeTabData.length})`}>
-          <TabItem showDetails={props.showDetails} tabItemData={activeTabData} loading={loading} />
+          <TabItem
+            showDetails={props.showDetails}
+            tabItemData={activeTabData}
+            loading={loading}
+          />
         </PivotItem>
         <PivotItem headerText={`Acknowledged(${acknowledgedTabData.length})`}>
-          <TabItem showDetails={props.showDetails} tabItemData={acknowledgedTabData} loading={loading} />
+          <TabItem
+            showDetails={props.showDetails}
+            tabItemData={acknowledgedTabData}
+            loading={loading}
+          />
         </PivotItem>
-        <PivotItem headerText={`Unacknowledged(${unacknowledgedTabData.length})`}>
-          <TabItem showDetails={props.showDetails} tabItemData={unacknowledgedTabData} loading={loading} />
+        <PivotItem
+          headerText={`Unacknowledged(${unacknowledgedTabData.length})`}
+        >
+          <TabItem
+            showDetails={props.showDetails}
+            tabItemData={unacknowledgedTabData}
+            loading={loading}
+          />
         </PivotItem>
         <PivotItem headerText={`Isolated(${isIsolatedData.length})`}>
-          <TabItem showDetails={props.showDetails} tabItemData={isIsolatedData} loading={loading} />
+          <TabItem
+            showDetails={props.showDetails}
+            tabItemData={isIsolatedData}
+            loading={loading}
+          />
         </PivotItem>
       </Pivot>
     </div>

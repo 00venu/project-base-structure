@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { SearchBox } from '@fluentui/react/lib/SearchBox';
+import { CSVLink, CSVDownload } from "react-csv";
 import {
   CloseRightarrow,
   classNames,
@@ -28,6 +29,7 @@ const MaximizedAlaramPanel = ({ alaramPanelHandler, showDetails }: any) => {
   const [anim, setAnim] = useState(maximizedPanelOpen);
   const [searchBoxVisable, setSearchBoxVisable]: any = useState(false);
   const [searchWord, setSearchWord]: any = useState();
+  const [csvData, setCsvData] = useState([]);
 
   const animHandler = () => {
     setAnim(maximizedPanelClose);
@@ -72,11 +74,11 @@ const MaximizedAlaramPanel = ({ alaramPanelHandler, showDetails }: any) => {
                 <h3>Alarms, Alerts and Events (AAE) Summary</h3>
                 <div >
                   <SearchIcon className={searchIcon} onClick={searchIconHandler} />
-                  <Exporticon className={cursor} />
+                  <CSVLink data={csvData} filename={"AAE_Summary.csv"}><Exporticon className={cursor} /></CSVLink>
                   <RoundButton text="Show All" />
                 </div>
               </div>
-              <AlaramPanelTabs showDetails={showDetails} searchWord={searchWord} />
+              <AlaramPanelTabs showDetails={showDetails} searchWord={searchWord} getDownloadData={setCsvData} />
             </div>
             {searchBoxVisable ? <SearchBox placeholder="Enter Search Phrase" className={searchBox} onChange={(ev: any, val) => onSearchHandler(val)} onClear={closeSearchBoxHandler} onEscape={closeSearchBoxHandler} /> : null}
           </div>
