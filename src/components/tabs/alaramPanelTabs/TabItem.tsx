@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { Spinner, SpinnerSize } from "@fluentui/react/lib/Spinner";
 import { FocusZone, FocusZoneDirection } from "@fluentui/react/lib/FocusZone";
 import { List } from "@fluentui/react/lib/List";
@@ -23,6 +23,7 @@ const TabItem = (props: any) => {
   const [alarmData, setAlarmData]: any = useState([]);
   const [eventData, setEventData]: any = useState([]);
   const [alertData, setAlertData]: any = useState([]);
+  const [noRecords, setNoRecords]: any = useState(true);
   const [filterValues, setFilterValues] = useState({
     alarm: true,
     event: false,
@@ -202,20 +203,28 @@ const TabItem = (props: any) => {
     </div>
   );
 
-  let allRecords: any;
+  let allRecords;
+
   if (loading) {
     allRecords = <Spinner size={SpinnerSize.large} />;
   }
-  if (tabItemData.length && activeData.length) {
+  if (tabItemData.length && activeData.length && !loading) {
     allRecords = (
       <FocusZone direction={FocusZoneDirection.vertical}>
         <List items={activeData} onRenderCell={onRenderCell} />
       </FocusZone>
     );
   }
-  if (!tabItemData.length && !loading) {
-    if (!activeData.length && !loading) allRecords = nodata;
+  if (
+    (tabItemData.length && !activeData.length && !loading) ||
+    (!tabItemData.length && !activeData.length && !loading)
+  ) {
+    allRecords = nodata;
   }
+
+  useEffect(()=>{
+    setNoRecords(false);
+  },[])
 
   return (
     <>
@@ -249,7 +258,9 @@ const TabItem = (props: any) => {
               </>
             )}
           >
-            <div className={cardsParent}>{allRecords}</div>
+            <div className={cardsParent}>
+              {noRecords ? noRecords : allRecords}
+            </div>
           </PivotItem>
           <PivotItem
             onRenderItemLink={() => (
@@ -297,4 +308,4 @@ const TabItem = (props: any) => {
   );
 };
 
-export default TabItem;
+export default memo(TabItem);
