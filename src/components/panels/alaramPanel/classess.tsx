@@ -16,7 +16,7 @@ export const classNames: any = mergeStyleSets(
       transform: "rotate(-90deg)",
       color: "#F5F5F5",
       whiteSpace: "nowrap",
-      marginTop: "25px",
+      marginTop: "30px",
     },
     arrowRotation: {
       transform: "rotate(-270deg)",          

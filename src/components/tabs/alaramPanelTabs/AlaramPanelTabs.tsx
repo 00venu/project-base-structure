@@ -33,7 +33,7 @@ const AlaramPanelTabs = (props: any) => {
       const alaramList = data.alarmData.data.AlarmsList.value.data;
       setAlaramListData(alaramList);
 
-      const test = alaramList.map((u: any) => {
+      let test = alaramList.map((u: any) => {
         return {
           ...u,
           isAcknowledged: u.isAcknowledged.toString(),
@@ -41,6 +41,9 @@ const AlaramPanelTabs = (props: any) => {
           is_sn_raised: u.is_sn_raised.toString(),
         };
       });
+
+      test = test.sort((a:any, b:any) => a.type.localeCompare(b.type));
+      
       props.getDownloadData(test);
     }
     setLoading(data.loading);
