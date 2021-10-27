@@ -31,7 +31,7 @@ const closeRight: string = keyframes({
   // "100%": { width: "85px" },
 });
 
-export const classNames = mergeStyleSets({
+export const classNames:any = mergeStyleSets({
   parent: {
     // display: "flex",
   },
@@ -80,17 +80,17 @@ export const classNames = mergeStyleSets({
     // width: "135px",
 
   },
-  alaramDetails:{
+  alaramDetails1:{
     height:'auto',
     backgroundColor: "#26262D",
     borderTop:'1px solid #666',
     position:'fixed !important', 
     right:0, 
-    top:0, 
+    top:'60px', 
     bottom:0,
     boxSizing:'border-box',
   },
   conditionalMR:{
-    marginRight:'580px'
+    marginRight:'550px'
   }
 });

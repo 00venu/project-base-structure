@@ -1,15 +1,29 @@
+/* .createServiceNotif{width: 100%; } */
 .createServiceNotif .scrollablePane {height: 90vh;  overflow: hidden;padding-right: 0px;}
 .createServiceNotif .scrollablePane:hover {overflow-y: scroll; }
 .createServiceNotif .scrollablePane:hover .formDiv{padding-right: 0px}
-.createServiceNotif .scrollablePane:hover .submitBtn{margin-right: 13px;}
+.createServiceNotif .scrollablePane:hover .submitBtn{margin-right: 0px;}
 .createServiceNotif .scrollablePane:hover .scrollableDiv{padding-right: 0px;}
 
-.createServiceNotif .scrollableDiv{border-top: 1px solid #5d5d5d; padding-right: 4px;}
-.createServiceNotif .serviceNotif{ height:100vh; border-top: 1px solid grey; background-color: #26262D; top:60px }
-.createServiceNotif .formDiv{padding: 9px 6px 10px 10px;background-color: #26262D;}
-.serviceNotif .ms-Grid-row{ background: #26262D;}
+.createServiceNotif .scrollableDiv{ padding-right: 0px;}
 
+.createServiceNotif .serviceNotif{ height:100vh;  border-top: 1px solid grey; background-color: #26262D; top:60px;  width: "auto";}
+
+/* .createServiceNotif .serviceNotif{ height:100vh;  border-top: 1px solid grey;  background-color: #26262D;  } */
+.createServiceNotif .formDiv{ padding: 9px 6px 10px 10px;background-color: #26262D;}
+.serviceNotif .ms-Grid-row{ background: #26262D;}
 /* Custom dropdown style */
+.ms-Dropdown::after{border: none  !important;} 
+.ms-Dropdown-caretDownWrapper i{content: url('/src/assets/img/components/carrotDown.svg'); }
+.ms-Dropdown-title{ background: #1D1D24;height: 40px;width:184px; display: flex;align-items: center;border: 1px solid #2E2E33 !important; box-sizing: border-box; border-radius: 4px; color: #008B98 !important; font-size: 14px; font-family: 'roboto-med'; font-weight: 500; line-height: 20px;}
+.ms-Dropdown-title:hover{color: #008B98;}
+.ms-Dropdown-caretDown {color: #008B98;}
+.ms-Dropdown-caretDownWrapper {top: 5px;right: 10px;}
+ .ms-Dropdown-items  .ms-Button:hover{border-radius: 0px;}
+ .ms-Dropdown-title:hover, .ms-Dropdown-title:focus, .ms-Dropdown-title:active{border: 1px solid #2E2E33 !important; color: #008B98 !important; }
+.ms-Dropdown-titleIsPlaceHolder:hover, .ms-Dropdown-titleIsPlaceHolder:focus, .ms-Dropdown-titleIsPlaceHolder:active{border: 1px solid #2E2E33 !important; color: #008B98 !important;}
+.ms-Dropdown-items button[class^='dropdownItemSelected-'], button[class*=' dropdownItemSelected-'] {border-radius: 0px; }
+.ms-Label{ font-size: 12px !important; color: #D8D8D8; line-height: 18px;padding-top: 0px; font-weight: 500; font-family: 'roboto-med'}
 .ms-Dropdown{width:184px;}
 .notificationType .ms-Dropdown{width:120px;}
 .notificationType .ms-Dropdown-title{width:120px;}
@@ -17,12 +31,20 @@
 .priority .ms-Dropdown-title{width:120px;}
 .status .ms-Dropdown{width:120px;}
 .status .ms-Dropdown-title{width:120px;}
+
 .longDropdowns .ms-Dropdown{width:378px;}
 .longDropdowns .ms-Dropdown-title{width:378px;}
+.ms-DatePicker .ms-TextField-fieldGroup{display: flex; align-items: center;height: 40px;width:182px;color:#008B98}
+.ms-DatePicker i{color:#008B98}
+.ms-TextField-field::placeholder { font-family: 'roboto-med'; font-size: 14px; color:#5D5D5D !important; font-weight: 500; line-height: 20px;}
+.ms-DatePicker i.ms-DatePicker-event--without-label{content: url('/src/assets/img/Fleetoverview/calendar.svg'); padding:9px 0px 8px 5px}
+.ms-DatePicker button{color:#f5f5f5;
+}
+.service-feild .ms-TextField-fieldGroup{width:184px; height: 43px; font-size: 14px; box-shadow: none; border-radius: 4px; border: 1px solid #2e2e33; }
 
-/* custom text field styles */
-.longtextField textarea.ms-TextField-field{width:378px;height: 81px;}
-.longtextField textarea.ms-TextField-field,textarea.ms-TextField-field {padding-top:10px}
+.NotificationtextField .ms-TextField-fieldGroup{width:368px;height:81px;  box-shadow: none; border-radius: 4px; border: 1px solid #2e2e33;}
+.longtextField .ms-TextField{width:368px;height:81px;  box-shadow: none; border-radius: 4px; border: 1px solid #2e2e33;}
+.longtextField .ms-TextField-field,textarea.ms-TextField-field {padding-top:10px ; box-shadow: none; border-radius: 4px; border: 1px solid #2e2e33;}
 .ms-TextField-field:hover{outline: 0px;}
 
 .service-heading{display: flex;align-items: center;height: 71px;background-color: #2E2E33;padding-left:15px; padding-right:17px;position: relative;justify-content: space-between;}
@@ -64,4 +86,9 @@ input#report, input#createdTime, input#createdDate
 input[name="createdTime"]  , input[name="createdDate"] , input[name="reportBy"]{
     pointer-events: none;
   }
-  textarea#notifdes\ longText::placeholder{font-size: 13px; line-height: 15px;}
+  textarea#notifdes\ longText::placeholder{font-size: 13px; line-height: 15px; }
+
+ 
+ 
+  .createServiceNotif .scrollablePane{height: 90.5vh; overflow-y: scroll;  overflow-x: hidden; -ms-overflow-style: none; scrollbar-width: none;}
+  .createServiceNotif .scrollablePane::-webkit-scrollbar {display: none;}

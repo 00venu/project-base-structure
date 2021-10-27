@@ -6,6 +6,7 @@ import { ListKeys, RootState } from "./types";
 import { List } from "@fluentui/react/lib/List";
 import { fetchPostsRequest } from "../../store/actions/listActions";
 const ListItems: React.FC = () => {
+
 const [renderList, setRenderList] = useState([]);
 const dispatch = useDispatch();
 useEffect(() => {
@@ -15,6 +16,7 @@ const list = useSelector((state: RootState) => state.list.list);
 useEffect(() => {
 if (list && list.length) setRenderList(list);
 }, [list]);
+
 const onRenderCell = (
 item: ListKeys | undefined,
 index: number | undefined

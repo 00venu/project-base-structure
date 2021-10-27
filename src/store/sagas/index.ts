@@ -1,7 +1,7 @@
-import { takeLatest, all, fork } from 'redux-saga/effects';
-import watchTodos from './list';
-import watchAlarmData from './alarmSaga';
+import { takeLatest, all, fork } from "redux-saga/effects";
+import watchFleetOverview from "./fleetOverview";
+import watchAlarmData from "./alarmSaga";
 
 export default function* rootSaga() {
-    yield all([fork([watchTodos, watchAlarmData])]);
+  yield all([fork(watchFleetOverview), fork(watchAlarmData)]);
 }

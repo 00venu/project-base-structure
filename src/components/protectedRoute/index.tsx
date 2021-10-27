@@ -4,6 +4,6 @@ export { default as MinimizedPanel } from "../panels/serviceNotificationPanel/Mi
 export { default as MaximizedPanel } from "../panels/serviceNotificationPanel/MaximizedPanel";
 export { default as MinimizedAlaramPanel } from "../panels/alaramPanel/MinimizedAlaramPanel";
 export { default as MaximizedAlaramPanel } from "../panels/alaramPanel/MaximizedAlaramPanel";
-export {default as AlarmDetails} from '../panels/alarmDetails/AlaramDetails';
+export { default as AlarmDetails } from "../panels/alarmDetails/AlaramDetails";
 
 export { classNames } from "./classess";

@@ -1,0 +1,33 @@
+[{
+    "train_number" : "TN-1234",
+    "unit_number" : "UN-1234",
+    "alarm_source" : "AC, Wheel,Engine",
+    "status" : "IN SERVICE",
+    "scheduled_maintenance" : "08/01/2021",
+    "availability" : "Running",
+    "standing_alarms" : 3,
+    "next_station" : "BanksTown",
+    "service_notifications" : 15,
+    "last_updated" : "08/10/2021",
+    "is_primary" : true,
+    "priority":"High",
+      "longitude" : 150.902861,
+      "latitude" : -32.232556
+  
+  },
+   {
+    "train_number" : "TN-1234",
+    "unit_number" : "UN-1235",
+    "alarm_source" : "AC, Wheel,Engine",
+    "status" : "IN SERVICE",
+    "scheduled_maintenance" : "08/01/2021",
+    "availability" : "Running",
+    "standing_alarms" : 3,
+    "next_station" : "BanksTown",
+    "service_notifications" : 15,
+    "last_updated" : "08/10/2021",
+    "is_primary" : true,
+    "priority":"Low",
+      "longitude" :  141.589222,
+      "latitude" : -31.904333  
+  }]

@@ -3,7 +3,7 @@ const Diagnostics  = () => {
   const { pageHeader } = classNames;
   return (
     <div>
-      <h3 className={pageHeader}>Diagnostics</h3>
+      <h3 className={pageHeader} style={{padding:'20px'}}>Diagnostics</h3>
     </div>
   );
 };

@@ -2,7 +2,7 @@ import ReportTable from "../../components/conditionReports/ReportTable";
 
 const ConditionReports = () => {
   return (
-    <div>
+    <div style={{padding:'20px'}}>
       <ReportTable />
     </div>
   );

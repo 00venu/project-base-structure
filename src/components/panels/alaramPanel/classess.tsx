@@ -6,7 +6,7 @@ export const classNames: any = mergeStyleSets(
     minimizedAlaramPanel: {
       // width: "50%",
       height: "100%",
-      paddingTop: "80px",
+      paddingTop: "30px",
       backgroundColor: "#26262D",      
       borderTop: "1px solid #666",
       textAlign: "center",

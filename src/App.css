@@ -1,15 +1,65 @@
- .ms-Grid-col{padding:0px !important} 
+.ms-Grid-col {padding-left: 0;  margin-left: 0;  padding-right: 0;} 
+.ms-Grid-row{ margin: 0px;}
+.ms-Grid{padding: 0px;}
 /* .layoutBody{display: flex;} */
-.panelOne{ width: 3.125%;height: 95vh; }
+.Layout {
+    min-height: 100%;
+    height: 100vh;
+    overflow-y: hidden;
+    
+}
+.panelOne{ width: 2.7%;height: 95vh; }
 .panelTwo{ width: 6.5%;}
-.panelNine{width: 90.62%;}
-.panelSix{ width: 65.1%;}
+.panelNine{width: 91.62%;}
+.panelSix{ width: 70.5%;}
 .panelEight{ width: 72.5%;}
-.panelFive { width: 46.9%  !important;}
-.panelThree{ width: 21.25%; margin-top: 60px; height: 95vh;} 
+.panelFive { width: 51.9%  !important;}
+.panelThree{ width: 21.25%;  height: 95vh; } 
+.panelten{ width: 65.9%  !important;}
 /* .panelThree{ width: 23.4%; margin-top: 60px; height: 95vh;} */
-.panelFour{ width: 28.6%; margin-top: 60px; height: 95vh;}
+.panelFour{ width: 28.6%; height: 95vh;}
 .hidden{display:none}
 .leftArrow {
-    background-color: #26262D; height: 95vh;   border-top: 1px solid #666;    display: flex;    justify-content: center;    width: 5%;
+    background-color: #26262D; height: 95vh;   border-top: 1px solid #666;    display: flex;    justify-content: center;    width: 8%;
     margin-left: 0px;    padding-top: 27px !important;    margin-left: 1px;  }
+
+    
+/* Searchbar styles */
+.ms-SearchBox, .ms-SearchBox:hover{ border:1px solid #2E2E33;}
+.ms-SearchBox-field{ color:#008B98; font-size: 14px; font-family:'roboto-med';  font-weight: 500;  line-height: 22px; }
+.ms-SearchBox-field::placeholder {color: #757575;   font-size: 14px;   font-weight: 500;    line-height: 22px; }
+.ms-SearchBox .ms-Button-flexContainer .ms-SearchBox-icon,.clearButton-160 .ms-Button-icon 
+{color:#008B98;    }
+.ms-SearchBox-icon{font-weight: bolder !important;font-size: 20px !important;   }
+.ms-Viewport {margin: 0 ; }
+.ms-FocusZone {padding: 0;}
+.ms-SearchBox-iconContainer i{content: url('/src/assets/img/Fleetoverview/search-icon.svg'); height: 20px; width: 20px;
+   padding-left: 7px; }
+
+/* Map styles */    
+.mapTitle{ margin:0px;margin-bottom: 10px;  }
+.esri-attribution__sources, .esri-attribution__powered-by {display: none;          }
+.esri-ui-top-left { right: -8px !important; top: -4px; left: auto;   }
+.esri-icon-font-fallback-text{    font-weight: bold;}
+.esri-zoom {flex-flow: unset;  }
+.esri-widget {color: #008B98; font-size: 14px; line-height: unset; background-color: #333D3D;
+padding: 1px;font-weight: 500; } 
+.esri-popup__main-container{ width:115% !important; }
+.esri-popup__actions ,.esri-popup__header-buttons{display: none; }
+.esri-popup__main-container{background: none; color: #f5f5f5;padding: 0px; }
+/* .esri-popup__header {margin-left:-14px; z-index: 0;  margin-top:-14px; height: 22px; display: flex; align-items: center; justify-self: center; z-index: 0;color: #f5f5f5;padding: 0px; } */
+/* .esri-popup__header-title .customClass{padding: 0px 7px 0px 7px; margin: 6px auto 6px 20px;background: #008B98; height: 22px; line-height: 22px;;} */
+.esri-popup__pointer-direction {background: #008B98; display: none; }
+.esri-feature__main-container .customClassName{   padding: 3px 20px; background: url('/src/assets/img/pinLabelBG.svg') no-repeat !important;}
+.esri-feature__main-container .noCommunicationClass{ padding: 3px 7px 3px 20px;
+  background: url('/src/assets/img/pinLabelBG.svg') no-repeat !important;
+  left: -22px;
+  margin-top: 3px;
+  position: absolute;
+  width: 170px;}
+
+.highcharts-credits{ display: none; }
+.esri-display-object image{position: relative; z-index: 99}
+.esri-popup__content{margin: -15px; margin-top:-14px !important}
+
+.ms-DetailsHeader-cellTitle i{content: url('/src/assets/img/Fleetoverview/Path.svg') !important;}

@@ -147,7 +147,7 @@ const TabItem = (props: any) => {
           <ul>
             <li>
               <Stack>
-                <Text nowrap className={labelWidth}>
+                <Text nowrap className={labelWidth2}>
                   {spanerIconFn(item?.is_sn_raised, item?.sn_status)}
                   {item?.defect_id}
                 </Text>
@@ -155,7 +155,7 @@ const TabItem = (props: any) => {
             </li>
             <li>
               <Stack>
-                <Text className={labelWidth}>{item?.defect_description}</Text>
+                <Text nowrap className={labelWidth}>{item?.defect_description}</Text>
               </Stack>
             </li>
           </ul>
@@ -177,7 +177,7 @@ const TabItem = (props: any) => {
             />
             <div>
               <Stack>
-                <Text nowrap className={labelWidth2}>
+                <Text nowrap className={labelWidth}>
                   {item?.functional_location}
                 </Text>
               </Stack>

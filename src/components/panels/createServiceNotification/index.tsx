@@ -25,6 +25,7 @@ const statusoptions: any[] = [{ key: '1', text: 'option1' }];
 const timeOptions: any[] = [{ key: '1', text: '6:00 AM' },{ key: '1', text: '7:00 AM' },{ key: '1', text: '8:00 AM' }];
 
 const ServiceNotification = (props: any) => {
+
   
     const [expandPanel, setexpandFeild] = useState(true); 
     const [longTextHeight, setHeight] = useState(146);
@@ -84,6 +85,11 @@ const setDisplayPanel = ()=>{
     const isValid = formValidation();
   
 }
+const createPanelcloseHandler = () => {
+   
+  setTimeout(() => props.createPanelcloseHandler(), 0);
+};
+
 // code for form validation.
 const formValidation = () => {
     var emailErr = "";
@@ -116,15 +122,15 @@ const formValidation = () => {
 
   return (
     <section className={`createServiceNotif `} >
-    
+  
       <div className="serviceNotif ms-delay100 ms-slideLeftIn10 ms-fadeOut100">
-      
+      <div className="row service-heading">
+            <div className="heading">Create Service Notification </div>
+            <div className ="crossLogo"><CrossLogo className="closeSvg"    onClick={() => createPanelcloseHandler()}/></div>
+          </div>
         <div className="ms-Grid">
           
-          <div className="row service-heading">
-            <div className="heading">Create Service Notification </div>
-            <div className ="crossLogo"><CrossLogo className="closeSvg"  onClick={setDisplayPanel}/></div>
-          </div>
+         
           <div className="scrollableDiv">
           <form onSubmit={onSubmit}>
           <div className="scrollablePane">
@@ -145,6 +151,7 @@ const formValidation = () => {
               <div className="ms-Grid-col ms-lg6 service-feild">
                 <Stack tokens={stackTokens}>
                   <Dropdown
+              
                     placeholder="Select Func Loc" 
                     label="Functional Location *"
                     options={functionaloptions}
@@ -280,6 +287,7 @@ const formValidation = () => {
               <div className="ms-Grid-col ms-lg12 service-feild longDropdowns">
                 <Stack tokens={stackTokens}>
                   <Dropdown
+                 
                     placeholder="Select Part of Object" 
                     label="Part of Object *"
                     options={partoptions}
@@ -290,7 +298,7 @@ const formValidation = () => {
               </div>
             </div>
             <div className="ms-Grid-row">
-              <div className="ms-Grid-col ms-lg12 service-feild longtextField">
+              <div className="ms-Grid-col ms-lg12 service-feild NotificationtextField">
                 <Label htmlFor="notifdes">Notification Description *</Label>
                <TextField id="notifdes notDesc"  className="input-class "
                 errorMessage={notDescErr}                              
@@ -299,7 +307,7 @@ const formValidation = () => {
               </div>
             </div>
             <div className="ms-Grid-row">
-              <div className="ms-Grid-col ms-lg12 service-feild">
+              <div className="ms-Grid-col ms-lg12 longtextField">
                 <Label htmlFor="notifdes">Long Text/Line</Label>
                 <TextField id="notifdes longText" className="input-class "  placeholder="CMS User Notes:&#13;&#10;<Enter additional notes here>&#13;&#10;Triage Notes.&#13;&#10;<The triage notes will be inserted here>" multiline resizable={false} style={{height: `${longTextHeight}px`}} onClick={ setHeightLongText}/>
       

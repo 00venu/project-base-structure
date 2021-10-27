@@ -285,11 +285,11 @@ export const classNames: any = mergeStyleSets(
   panelCards,
   {
     labelWidth: {
-      maxWidth: "100%",
+      maxWidth: "200px",
       textAlign:'left'
     },
     labelWidth2: {
-      maxWidth: "140px",
+      maxWidth: "100px",
     },
     spannerIcon: {
       width: "16px",

@@ -1,4 +1,5 @@
 import { classNames } from "./classess";
+
 const LandingPage = () => {
   const { pageHeader } = classNames;
   return (

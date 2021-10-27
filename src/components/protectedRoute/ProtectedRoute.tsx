@@ -6,7 +6,7 @@ import {
   MinimizedPanel,
   MinimizedAlaramPanel,
   classNames,
-  AlarmDetails
+  AlarmDetails,
 } from "./";
 
 //  import CreateTicketPanel from "../panels/serviceNotificationPanel/CreateTicketPanel";
@@ -25,7 +25,6 @@ const MaximizedAlaramPanel: any = lazy(
 //   () => import("../panels/serviceNotificationPanel/CreateTicketPanel")
 // );
 
-
 const ProtectedRoute = (props: any) => {
   const {
     wrapper,
@@ -36,8 +35,8 @@ const ProtectedRoute = (props: any) => {
     parent,
     wrapLeft,
     wrapRight,
-    alaramDetails,
-    conditionalMR
+    conditionalMR,
+    alaramDetails1,
   } = classNames;
   const [servicePanel, setServicePanel] = useState(true);
   const [alaramPanel, setAlaramPanel] = useState(true);
@@ -46,6 +45,8 @@ const ProtectedRoute = (props: any) => {
   const [servicedata, setServicePaneldata] = useState(true);
   const [anim, setAnim]: any = useState();
   const [animAlaram, setAnimAlaram]: any = useState();
+  const [left, setLeft] = useState(true);
+  const [right, setRight] = useState(true);
   const [alarmDetails, setAlaramDetails]: any = useState(false);
   const { component: Component, ...rest } = props;
   let ndata: any;
@@ -55,9 +56,15 @@ const ProtectedRoute = (props: any) => {
     if (servicePanel) {
       setAlaramPanel(true);
       setCreatePanel(true);
+      setServicePaneldata(true);
+      setLeft(false);
+    }
+    if (!servicePanel) {
+      setServicePaneldata(true);
+      setRight(true);
+      setLeft(true);
     }
     setServicePanel((state) => !state);
-
   };
 
   const alaramPanelHandler = () => {
@@ -66,27 +73,54 @@ const ProtectedRoute = (props: any) => {
     if (alaramPanel) {
       setServicePanel(true);
       setCreatePanel(true);
-    }else{
-      setAlaramDetails(false)
+    } else {
+      setAlaramDetails(false);
     }
     setAlaramPanel((state) => !state);
-
   };
   const detailsPanelHandler = () => {
-    setDetailsPanel((state) => !state)
-  }
+    setDetailsPanel((state) => !state);
+  };
 
   const createPanelHandler = () => {
     if (createPanel) {
       setServicePanel(true);
       setAnimAlaram(true);
+      setServicePaneldata(true);
+      setAlaramPanel(true);
+      setLeft(true);
+      setRight(false);
+    } else {
+      setLeft(true);
+      setRight(true);
+    }
+
+    setCreatePanel((state) => !state);
+  };
+
+  const createPanelcloseHandler = () => {
+    if (!createPanel) {
+      setServicePanel(false);
+      setAnimAlaram(false);
+      setServicePaneldata(true);
+      setServicePanel(true);
+      setLeft(true);
+      setRight(true);
     }
     setCreatePanel((state) => !state);
-  }
+  };
+
   const servicePaneldata = (itemdata: any) => {
     const val = servicedata ? openRight : closeLeft;
 
     ndata = itemdata;
+    if (servicedata) {
+      setRight(false);
+      setLeft(false);
+    } else {
+      setRight(true);
+      setLeft(false);
+    }
 
     setServicePaneldata((state) => !state);
   };
@@ -95,13 +129,12 @@ const ProtectedRoute = (props: any) => {
     setAlaramDetails(true);
   };
   const CMR = alarmDetails && !alaramPanel && conditionalMR;
+
   return (
     <>
-      <section className="ms-Grid" dir="ltr">
+      <section className="ms-Grid Layout" dir="ltr">
         <div className="ms-Grid-row">
-
           <Header createPanelHandler={createPanelHandler} />
-
         </div>
 
         <div className="ms-Grid-row layoutBody">
@@ -115,44 +148,78 @@ const ProtectedRoute = (props: any) => {
           ) : (
             <div className={"ms-Grid-col ms-xl3 ms-xxl3 ms-xxxl3 panelThree "}>
               <Suspense fallback="">
-                <MaximizedPanel servicePanelHandler={servicePanelHandler} servicePaneldata={servicePaneldata} />
+                <MaximizedPanel
+                  servicePanelHandler={servicePanelHandler}
+                  servicePaneldata={servicePaneldata}
+                />
               </Suspense>
             </div>
           )}
-
 
           {alaramPanel ? (
             <div className="ms-Grid-col ms-xl1 ms-xxl1 ms-xxxl1  panelOne">
               <MinimizedAlaramPanel alaramPanelHandler={alaramPanelHandler} />
             </div>
           ) : (
-            <div className="ms-Grid-col ms-xl4 ms-xxl4 ms-xxxl4 panelFour">
+            <div className="ms-Grid-col ms-xl4 ms-xxl4 ms-xxxl4 panelFour ">
               <Suspense fallback="">
-                <MaximizedAlaramPanel alaramPanelHandler={alaramPanelHandler} showDetails={showDetails} />
+                <MaximizedAlaramPanel
+                  alaramPanelHandler={alaramPanelHandler}
+                  showDetails={showDetails}
+                />
               </Suspense>
             </div>
           )}
 
-
-          <div className={`main-element ms-Grid-col   ${!alaramPanel ? 'ms-xl6 ms-xxl6 ms-xxxl6 panelSix ' : ''} }${(!servicedata) ? 'ms-xl5 ms-xxl5 ms-xxxl5 panelFive' : ''}
-             ${(!servicePanel && servicedata) ? 'ms-xl8 ms-xxl8 ms-xxxl8 panelEight' : ''} ${(!createPanel) ? 'ms-xl6 ms-xxl6 ms-xxxl6 panelSix' : ''} ${alaramPanel && servicePanel && createPanel && servicedata ? 'ms-xl9 ms-xxl9 ms-xxxl9 panelNine' : ''} `}  >
-            <div className={[wrapper, CMR].join(' ')}  >
+          <div
+            className={` main-element ms-Grid-col ${
+              !alaramPanel ? "ms-xl6 ms-xxl6 ms-xxxl6 panelten " : ""
+            } }${!servicedata ? "ms-xl5 ms-xxl5 ms-xxxl5 panelFive" : ""}
+             ${
+               !servicePanel && servicedata
+                 ? "ms-xl8 ms-xxl8 ms-xxxl8 panelEight"
+                 : ""
+             } ${!createPanel ? "ms-xl6 ms-xxl6 ms-xxxl6 panelSix" : ""} ${
+              alaramPanel && servicePanel && createPanel && servicedata
+                ? "ms-xl9 ms-xxl9 ms-xxxl9 panelNine"
+                : ""
+            } `}
+          >
+            <div className={CMR}>
               <Route
                 {...rest}
-                render={(props) => <Component {...props} {...rest} />}
+                render={(props) => (
+                  <Component {...props} {...rest} left={left} right={right} />
+                )}
               />
             </div>
           </div>
-          {alarmDetails && !alaramPanel ? <div className={`ms-Grid-col ms-xl4 ms-xxl4 ms-xxxl4 panelFour ${alaramDetails}`}>
-            <AlarmDetails />
-          </div> : null}
-          <div className={"ms-Grid-col ms-xl3 ms-xxl3 ms-xxxl3  panelThree" + (createPanel ? " hidden" : '')}>
-            <CreateTicketPanel />
-          </div>
-          <div className={"ms-Grid-col ms-xl3 ms-xxl3 ms-xxxl3  panelThree" + (servicedata ? " hidden" : '')}>
-            <Description data={ndata} />
 
+          <div
+            className={
+              "ms-Grid-col ms-xl3 ms-xxl3 ms-xxxl3  panelThree" +
+              (createPanel ? " hidden" : "")
+            }
+          >
+            <CreateTicketPanel
+              createPanelcloseHandler={createPanelcloseHandler}
+            />
           </div>
+          <div
+            className={
+              "ms-Grid-col ms-xl3 ms-xxl3 ms-xxxl3  panelThree" +
+              (servicedata ? " hidden" : "")
+            }
+          >
+            <Description data={ndata} />
+          </div>
+          {alarmDetails && !alaramPanel ? (
+            <div
+              className={`ms-Grid-col ms-xl4 ms-xxl4 ms-xxxl4 panelFour ${alaramDetails1}`}
+            >
+              <AlarmDetails />
+            </div>
+          ) : null}
         </div>
       </section>
     </>

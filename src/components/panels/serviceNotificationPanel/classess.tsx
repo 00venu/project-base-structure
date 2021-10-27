@@ -22,7 +22,7 @@ export const panelCards: any = {
     cursor: "pointer",
   },
   cardsParent: {
-    height: "78vh",
+    height: "89vh",
     overflow: "auto",
     marginTop: "20px",
   },
@@ -97,7 +97,6 @@ export const panelCards: any = {
     
       },
       notificationcontainer:{
-        paddingTop: "60px",
         overflow:"hidden"
         
     
@@ -116,7 +115,8 @@ export const panelCards: any = {
       },
       description_body:{
         backgroundColor: "#2E2E33",
-        
+        height:"95vh",
+        padding:"10px"
       },
       filled_button:{
        
@@ -132,7 +132,7 @@ export const panelCards: any = {
        },
        service_column_class:{
     borderRight:"1px solid gray",
-    
+    padding:"5px"
     
     
        },
@@ -158,16 +158,9 @@ export const panelCards: any = {
 export const classNames: any = mergeStyleSets(
   {
     minimizedPanel: {   
-      // width: "50%",
       height: "100%",
-      paddingTop: "80px",
-      backgroundColor: "#333D3D;",
-      // position: "fixed",
-      // top: "60px",
-      // left: "50px",
-      // bottom: 0,
-      // zIndex: "997",
-      borderTop: "1px solid #666",
+      paddingTop: "30px",
+      backgroundColor: "#333D3D;",     
       textAlign: "center",
     },
     textRotation: {

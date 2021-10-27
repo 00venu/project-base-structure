@@ -16,15 +16,17 @@ import HistoricalProcessViewer from "./pages/HistoricalProcessViewer";
 import DefectInvestigation from "./pages/DefectInvestigation";
 import Diagnostics from "./pages/Diagnostics";
 import LogViewer from "./pages/LogViewer";
+import FleetOverview from "./pages/fleetOverview";
 import ConditionReports from "./pages/ConditionReports/ConditionReports";
 
 import "./App.css";
+
 const App = () => {
   return (
     <ThemeProvider applyTo="body" theme={integraDark}>
       <Router>
         <Switch>
-          <ProtectedRoute exact path="/" component={LandingPage} />
+          <ProtectedRoute exact path="/" component={FleetOverview} />
           <ProtectedRoute exact path="/UnitOverview" component={UnitOverview} />
           <ProtectedRoute exact path="/AlarmOverview" component={AlarmOverview} />
           <ProtectedRoute exact path="/MaintenanceLog" component={MaintenanceLog} />
@@ -32,7 +34,6 @@ const App = () => {
           <ProtectedRoute exact path="/Diagnostics" component={Diagnostics} />
           <ProtectedRoute exact path="/DefectInvestigation" component={ConditionReports} />
           <ProtectedRoute exact path="/test11" component={ConditionReports} />
-        
           <ProtectedRoute exact path="/HistoricalProcessViewer" component={HistoricalProcessViewer} />
           <ProtectedRoute exact path="/LiveProcessViewer" component={LiveProcessViewer} />
           <ProtectedRoute exact path="/Simulator" component={Simulator} />
