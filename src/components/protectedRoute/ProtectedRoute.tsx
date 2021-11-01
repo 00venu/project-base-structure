@@ -1,12 +1,15 @@
-import { useState, lazy, Suspense } from "react";
+import { useState, lazy, Suspense, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Route } from "react-router-dom";
+
+import { fetchAlarmRequest } from "../../store/actions/alarmActions";
+
 import {
   Header,
   LeftNav,
   MinimizedPanel,
   MinimizedAlaramPanel,
   classNames,
-  AlarmDetails,
 } from "./";
 
 //  import CreateTicketPanel from "../panels/serviceNotificationPanel/CreateTicketPanel";
@@ -35,8 +38,6 @@ const ProtectedRoute = (props: any) => {
     parent,
     wrapLeft,
     wrapRight,
-    conditionalMR,
-    alaramDetails1,
   } = classNames;
   const [servicePanel, setServicePanel] = useState(true);
   const [alaramPanel, setAlaramPanel] = useState(true);
@@ -47,9 +48,9 @@ const ProtectedRoute = (props: any) => {
   const [animAlaram, setAnimAlaram]: any = useState();
   const [left, setLeft] = useState(true);
   const [right, setRight] = useState(true);
-  const [alarmDetails, setAlaramDetails]: any = useState(false);
   const { component: Component, ...rest } = props;
   let ndata: any;
+  const dispatch = useDispatch();
   const servicePanelHandler = () => {
     const val = servicePanel ? openLeft : closeLeft;
     setAnim(val);
@@ -67,14 +68,21 @@ const ProtectedRoute = (props: any) => {
     setServicePanel((state) => !state);
   };
 
+  useEffect(() => {
+    dispatch(fetchAlarmRequest());
+  }, [dispatch]);
+
   const alaramPanelHandler = () => {
     const val = alaramPanel ? openRight : closeRight;
     setAnimAlaram(val);
     if (alaramPanel) {
       setServicePanel(true);
       setCreatePanel(true);
+      setServicePaneldata(true);
+      setLeft(false);
+      setRight(true);
     } else {
-      setAlaramDetails(false);
+      setLeft(true);
     }
     setAlaramPanel((state) => !state);
   };
@@ -124,11 +132,6 @@ const ProtectedRoute = (props: any) => {
 
     setServicePaneldata((state) => !state);
   };
-  const showDetails = (val: any) => {
-    console.log(val);
-    setAlaramDetails(true);
-  };
-  const CMR = alarmDetails && !alaramPanel && conditionalMR;
 
   return (
     <>
@@ -163,10 +166,7 @@ const ProtectedRoute = (props: any) => {
           ) : (
             <div className="ms-Grid-col ms-xl4 ms-xxl4 ms-xxxl4 panelFour ">
               <Suspense fallback="">
-                <MaximizedAlaramPanel
-                  alaramPanelHandler={alaramPanelHandler}
-                  showDetails={showDetails}
-                />
+                <MaximizedAlaramPanel alaramPanelHandler={alaramPanelHandler} />
               </Suspense>
             </div>
           )}
@@ -185,7 +185,7 @@ const ProtectedRoute = (props: any) => {
                 : ""
             } `}
           >
-            <div className={CMR}>
+            <div>
               <Route
                 {...rest}
                 render={(props) => (
@@ -213,13 +213,6 @@ const ProtectedRoute = (props: any) => {
           >
             <Description data={ndata} />
           </div>
-          {alarmDetails && !alaramPanel ? (
-            <div
-              className={`ms-Grid-col ms-xl4 ms-xxl4 ms-xxxl4 panelFour ${alaramDetails1}`}
-            >
-              <AlarmDetails />
-            </div>
-          ) : null}
         </div>
       </section>
     </>

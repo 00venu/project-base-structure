@@ -133,7 +133,7 @@ if(trainDataList.length){
 
   Object.entries(filterData).map(([key, value]) => {
     var color = '';
-    
+   
     var pecentage = (value / totalTrains) * 100;
     if (key === "totalTrains") { color = '#757575'; }
     else if (key === "goodHealth") { color = '#2E7D32'; }
@@ -194,10 +194,11 @@ if(trainDataList.length){
         }
       }]
     };
+ 
     graphOptions[key] = options;
 
   });
-  // console.log(graphOptions);
+ 
 
    
  const filterClickHandle = (val:any)=>{
@@ -238,7 +239,7 @@ if(trainDataList.length){
             <HighchartsReact highcharts={Highcharts} options={graphOptions.inService} />
             <div className="trainImage"><TrainSvg color="#0277BD" /></div>
           </div>
-            <div className="description ugl-font14 ugl-fontweight500 ugl-lineheight20 ms-Grid-col ms-xl10 ms-xxl10 ms-xxxl10">Units In Operation</div>
+            <div className="description ugl-font14 ugl-fontweight500 ugl-lineheight20 ms-Grid-col ms-xl10 ms-xxl10 ms-xxxl10">Units in Operation</div>
             <div className="count ugl-font36 ugl-fontweight400 ugl-lineheight24 ms-Grid-col ms-xl2 ms-xxl2 ms-xxxl2">{filterData.inService}</div>          
           <div className={"arrowMark " + (cardSelected !== 'inService' ? "hidden" : "")}><Arrow /></div>
         </div>
@@ -255,7 +256,7 @@ if(trainDataList.length){
             <HighchartsReact highcharts={Highcharts} options={graphOptions.notInService} />
             <div className="trainImage"><TrainSvg color="#9C27B0" /></div>
           </div>
-            <div className="description ugl-font14 ugl-fontweight500 ugl-lineheight20 ms-Grid-col ms-xl10 ms-xxxl10 ms-xxl10 ">Units Maintenance</div>
+            <div className="description ugl-font14 ugl-fontweight500 ugl-lineheight20 ms-Grid-col ms-xl10 ms-xxxl10 ms-xxl10 ">Units in Maintenance</div>
             <div className="count ugl-font36 ugl-fontweight400 ugl-lineheight24 ms-Grid-col ms-xl2 ms-xxl2 ms-xxxl2">{filterData.notInService}</div>
           
           <div className={"arrowMark " + (cardSelected !== 'notInService' ? "hidden" : "")}><Arrow /></div>

@@ -43,7 +43,21 @@ align-items: center;}
 .fleetOverview .viewDiv{  border: 1px solid #5D5D5D;  border-radius: 4px;  padding: 0;  margin: 0;  }
 .fleetOverview.expandMapContainer{  padding:20px;  background: #26262D;  position: relative;  }
 .fleetOverview.expandMapViewDiv{  border: 1px solid #5D5D5D;  border-radius: 4px; padding: 0;  margin: 0;}
+.fleetOverview .customPopup{background-color: #141419;margin-bottom:14px; padding:10px ; border-radius: 4px; height:160px ; width:250px}
+.fleetOverview .customPopup .popup-template .popup_title{ font-size: 16px !important;display: flex; justify-content: space-between; font-style: normal;  font-weight: 500;
+  line-height: 20px;  letter-spacing: 0em;  text-align: left;
+  }
+  .fleetOverview .popup-template .popup-item .count{right:40px !important;position: absolute;}
+  .fleetOverview .popup-template .popup-items{margin-top: 10px;}
+  .fleetOverview .popup-template .popup-item{display: flex; font-size:12px; line-height: 18px; font-weight: 500; padding: 7px 15px;align-items: center;}
+  .fleetOverview .popup-template  li{background: #1d1d24;padding:5px; height: 30px;margin-bottom:10px}
+  .fleetOverview .popup-template .popup-items li .alamsSvg{content: url('/src/assets/img/Fleetoverview/popup_alarms.svg') !important; padding-right: 13px;}
+  .fleetOverview .popup-template .popup-items li .eventsSvg{content: url('/src/assets/img/Fleetoverview/popup_events.svg') !important;padding-right: 13px;}
+  .fleetOverview .popup-template .arrow{content: url('/src/assets/img/Fleetoverview/popup_arrow.svg') !important;     position: absolute;
+     left: 41%;    bottom: -7px;}
 
+  .fleetOverview .popup-template .popup-items li .alertsSvg{content: url('/src/assets/img/Fleetoverview/popup_alerts.svg') !important;padding-right: 13px;}
+.fleetOverview .highcharts-background{fill:transparent}
 
 /* SearchBar */
 .fleetOverview .searchBarDiv{top:-8px} 

@@ -115,17 +115,28 @@ const TrainDetails = (props: any) => {
   const onColumnClick = (value: any) => {
     setOrder((state) => !state);
     var stringArray: any = [...trainDataList];
+  
     const test: any = stringArray.sort((a: any, b: any) => {
-      const x = a[value].toLowerCase();
-      const y = b[value].toLowerCase();
-      return order ? x.localeCompare(y) : y.localeCompare(x);
+      if(typeof(value) == 'string' && value != 'standing_alarms'){
+
+        const x = a[value].toLowerCase();
+        const y = b[value].toLowerCase();
+        return order ? x.localeCompare(y) : y.localeCompare(x);
+      }
+      else{
+        const x = a[value];
+        const y = b[value];
+        return order ? x.localeCompare(y) : y.localeCompare(x);
+      }
+      
+      
     });
     setTrainDataList(test);
   };
   const showtooltip = (train: any) => {
 
     if (train.item.train_number != "") {
-      props.parentCallback(train.item.unit_number);
+      props.parentCallback(train.item.train_number);
     } else {
       props.parentCallback(train.item.unit_number);
     }
@@ -203,7 +214,7 @@ const TrainDetails = (props: any) => {
     isSorted: true, onRender: sourceDiv, onColumnClick: () => onColumnClick("alarm_source"),
   },
   {
-    key: 'column5', name: 'Mode', fieldName: 'status', minWidth: 60, maxWidth: 190, isResizable: true,
+    key: 'column5', name: 'Mode', fieldName: 'status', minWidth: 60, maxWidth: 160, isResizable: true,
     isSorted: true,onColumnClick: () => onColumnClick("status")
   },
   {
@@ -213,7 +224,7 @@ const TrainDetails = (props: any) => {
   // { key: 'column7', name: 'Availability', fieldName: 'availability', minWidth: 50, maxWidth: 116, isResizable: true },
   {
     key: 'column7', name: 'Standing Alarms', fieldName: 'standing_alarms',
-    isSorted: true, onColumnClick: () => onColumnClick("standing_alarms"),
+    isSorted: true, 
   minWidth: 50, maxWidth: 170, isResizable: true
   },
   {
@@ -222,7 +233,7 @@ const TrainDetails = (props: any) => {
      minWidth: 50, maxWidth: 150, isResizable: true
   },
   {
-    key: 'column9', name: 'Constraints', fieldName: 'service_notifications', isSorted: true,  minWidth: 60, maxWidth: 160, isResizable: true,onColumnClick: () => onColumnClick("service_notifications"),
+    key: 'column9', name: 'Constraints', fieldName: 'service_notifications', isSorted: true,  minWidth: 60, maxWidth: 160, isResizable: true,
   },
   {
     key: 'column10',
@@ -260,7 +271,7 @@ const TrainDetails = (props: any) => {
     },
     {
       key: 'column7', name: 'Constraints', fieldName: 'service_notifications',
-      isSorted: true,onColumnClick: () => onColumnClick("service_notifications"), minWidth: 50, maxWidth: 130, isResizable: true
+      isSorted: true, minWidth: 50, maxWidth: 130, isResizable: true
     },
     {
       key: 'column8', name: 'Next Station', fieldName: 'next_station',
@@ -298,8 +309,7 @@ const TrainDetails = (props: any) => {
        isSorted: true,  minWidth: 60, maxWidth: 140, isResizable: true,onColumnClick: () => onColumnClick("scheduled_maintenance"),
     },
     {
-      key: 'column7', name: 'Standing Alarms', fieldName: 'standing_alarms',onColumnClick: () => onColumnClick("train_number"),
-       isSorted: true,  minWidth: 90, maxWidth: 180, isResizable: true
+      key: 'column7', name: 'Standing Alarms', fieldName: 'standing_alarms', isSorted: true,  minWidth: 90, maxWidth: 180, isResizable: true
     },
    
 
@@ -329,8 +339,7 @@ const TrainDetails = (props: any) => {
       onColumnClick: () => onColumnClick("scheduled_maintenance"),isSorted: true,  minWidth: 100, maxWidth: 200, isResizable: true
     },
     {
-      key: 'column7', name: 'Standing Alarms', fieldName: 'standing_alarms',onColumnClick: () => onColumnClick("standing_alarms"),
-       isSorted: true,  minWidth: 90, maxWidth: 180, isResizable: true
+      key: 'column7', name: 'Standing Alarms', fieldName: 'standing_alarms', isSorted: true,  minWidth: 90, maxWidth: 180, isResizable: true
     },
     {
       key: 'column8', name: 'Next Station', fieldName: 'next_station',

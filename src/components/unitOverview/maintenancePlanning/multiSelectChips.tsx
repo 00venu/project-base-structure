@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { Icon } from "@fluentui/react/lib/Icon";
 import "react-multiple-select-dropdown-lite/dist/index.css";
-import { classNames } from "./landingPage/classess";
+// import { classNames } from "./landingPage/classess";
 import { mergeStyleSets } from "@fluentui/react/lib/Styling";
 
 const classNames_dropdown = mergeStyleSets({
   bg: {
-    maxWidth: "500px",
+    maxWidth: "400px",
+    width: "400px",
     backgroundColor: "#26262d",
-    padding: "30px",
     margin: "0 auto",
     position: "relative",
     ".msl-vars ": {
@@ -70,19 +70,20 @@ const classNames_dropdown = mergeStyleSets({
     position: "absolute",
     top: 0,
     bottom: 0,
-    right: "65px",
+    right: "30px",
     margin: "auto",
     color: "#fff",
     backgroundColor: "#008b98",
-    borderRadius: "50%",
+    borderRadius: "42%",
+    padding: "0px 5px",
     textAlign: "center",
     lineHeight: "30px",
   },
 });
 const MultiSelect = require("react-multiple-select-dropdown-lite").default;
-const UnitOverview = () => {
+const MultiSelectChips = () => {
   const [count, setCount]: any = useState(0);
-  const { pageHeader } = classNames;
+//   const { pageHeader } = classNames;
   const { bg, iconArrow, optionsCount } = classNames_dropdown;
   const handleOnchange = (val: any) => {
     val = val.split(",").filter((x:any) => x);
@@ -97,10 +98,6 @@ const UnitOverview = () => {
   ];
 
   return (
-    <div>
-      <h3 className={pageHeader} style={{ padding: "20px" }}>
-        UnitOverview
-      </h3>
       <div className={bg}>
         <MultiSelect
           onChange={handleOnchange}
@@ -110,8 +107,7 @@ const UnitOverview = () => {
         />
         <span className={optionsCount}>{count}</span>
       </div>
-    </div>
   );
 };
 
-export default UnitOverview;
+export default MultiSelectChips;

@@ -6,6 +6,7 @@ export { ReactComponent as CloseRightarrow } from "../../../assets/img/layout/Al
 export { ReactComponent as SearchIcon } from "../../../assets/img/serviceNotificationPanel/Shapesearch.svg";
 export { default as AlaramPanelTabs } from "../../tabs/alaramPanelTabs/AlaramPanelTabs";
 export { default as TrainAlert } from "../../trains/trainAlert/TrainAlert";
+export {data} from '../../tabs/alaramPanelTabs/data';
 
 export { default as RoundButton } from "../../button/RoundButton";
 export { ReactComponent as Exporticon } from "../../../assets/img/alarms/export_icon.svg";

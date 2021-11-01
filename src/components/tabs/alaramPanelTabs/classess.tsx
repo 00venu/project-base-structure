@@ -298,7 +298,7 @@ export const classNames: any = mergeStyleSets(
       marginRight: "3px",
     },
     cardsParent: {
-      height: "48vh !important",
+      height: "66vh !important",
       overflow: "auto",
       marginTop: "20px",
     },

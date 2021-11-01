@@ -31,21 +31,21 @@ function Table({ columns, data }: any) {
     headerGroups,
     prepareRow,
     rows,
-    page,
-    canPreviousPage,
-    canNextPage,
-    pageOptions,
-    pageCount,
-    gotoPage,
-    nextPage,
-    previousPage,
-    setPageSize,
-    state: { pageIndex, pageSize, expanded },
+    // page,
+    // canPreviousPage,
+    // canNextPage,
+    // pageOptions,
+    // pageCount,
+    // gotoPage,
+    // nextPage,
+    // previousPage,
+    // setPageSize,
+    // state: { pageIndex, pageSize, expanded },
   } = useTable(
     {
       columns,
       data,
-      initialState: { pageIndex: 2 },
+      // initialState: { pageIndex: 2 },
     },
     useExpanded,
     usePagination
@@ -106,7 +106,7 @@ function Table({ columns, data }: any) {
           </tbody>
         </table>
       </div>
-      <div className={pagination}>
+      {/* {<div className={pagination}>
         <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
           {"<<"}
         </button>{" "}
@@ -149,7 +149,7 @@ function Table({ columns, data }: any) {
             </option>
           ))}
         </select>
-      </div>
+      </div>} */}
     </>
   );
 }

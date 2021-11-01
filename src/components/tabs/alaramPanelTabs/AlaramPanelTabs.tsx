@@ -17,9 +17,9 @@ const AlaramPanelTabs = (props: any) => {
 
   const { linkIsSelected } = classNames;
 
-  useEffect(() => {
+  /*useEffect(() => {
     dispatch(fetchAlarmRequest());
-  }, [dispatch]);
+  }, [dispatch]);*/
 
   const data: any = useSelector((state: any) => state.AlarmReducer);
 

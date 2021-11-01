@@ -3,7 +3,8 @@ import { loadModules } from 'esri-loader';
 import { ReactComponent as MapExpand } from '../../assets/img/Fleetoverview/Fullscreen.svg';
 import { useSelector } from 'react-redux';
 import { RootState } from '../list/types';
-
+import { ReactComponent as AlarmsSvg } from  '../../assets/img/Fleetoverview/popup_alarms.svg';
+import { useHistory } from 'react-router-dom';
 
 const options = {
   url: 'https://js.arcgis.com/4.7/',
@@ -18,8 +19,10 @@ interface Props {
 
 //MapComponent class starts
 const MapComponent  = (props:any) => {
+  const history = useHistory();
   let dataArr: any[] = [];
-  // let view1:any;
+  let dataArr1: any[] = [];
+   let view2:any;
 //  const [dataArr , setDataArr]:any = useState([]); 
  
   let map:any;
@@ -38,6 +41,9 @@ const [view1 , setView1]:any = useState();
   useEffect(() => {   
   if (list.fleetOverview && list.fleetOverview.data && list.fleetOverview.data.data){
         setTrainData(list.fleetOverview.data.data);
+    }
+    else{
+      setTrainData(props.details);    
     }
   }, [list]);
   
@@ -102,7 +108,6 @@ const [view1 , setView1]:any = useState();
   }, [props.searchValue])
 
 
-  console.log(trainData);
   useEffect(() => {
     loadModules(['esri/Map', 'esri/views/MapView', 'esri/layers/GraphicsLayer', 'esri/Graphic', 'esri/geometry/Point', "esri/layers/FeatureLayer"], options)
       .then(([Map, MapView, GraphicsLayer, Graphic,Point, FeatureLayer]) => {
@@ -125,7 +130,7 @@ const [view1 , setView1]:any = useState();
           width: "52px",
           height: "61px"
         };
-       
+     
         trainData.map((train:any) => {
           var lastUpdated = train.last_updated;
           var status = train.status;
@@ -174,9 +179,9 @@ const [view1 , setView1]:any = useState();
             markerSymbol.height = "67px";
           }
                   
-            trainc = train.unit_number;
+            trainc = train.train_number;
             lineAtt = {
-              Name: train.unit_number,
+              Name: train.train_number,
             };
          
 
@@ -184,7 +189,7 @@ const [view1 , setView1]:any = useState();
             type: "point",
             longitude: 150.902861,
             latitude: -32.232556,
-            title: train.unit_number
+            title: train.train_number
           };
       
           var pointGraphic = new Graphic({
@@ -202,21 +207,60 @@ const [view1 , setView1]:any = useState();
             }
 
           });
+
+          var pointGraphic1 = new Graphic({
+            geometry: point,
+            attributes: lineAtt,
+            symbol: markerSymbol,
+            popupTemplate: {
+              name: trainc,
+              content: function(){
+                var div = document.createElement("div");
+                div.className = "customPopup";
+                div.innerHTML = '<div class="popup-template"><span class="popup_title"><span>Active AAE</span><span>'+ trainc+'</span></span> </span><ul class="popup-items"> <li class="popup-item"> <span class="svgImg alamsSvg"></span><span class="category">Alarms</span> <span class="count">05</span></li> <li class="popup-item ">  <span class="svgImg alertsSvg"></span class="category" >Alerts</span><span class="count">12</span> </li> <li class="popup-item"> <span class="svgImg eventsSvg"></span class="category">Events</span><span class="count">07</span></li> </ul><span class="arrow"></span> </div>'
+                return div;
+              }
+            }
+
+          });
           dataArr.push(pointGraphic);
+          dataArr1.push(pointGraphic1);
           // setDataArr(pointGraphic);
           
         })
         setTotalTrainData(dataArr);
-console.log(totalTrainData);
+
         const graphicsLayer = new GraphicsLayer();
         map.add(graphicsLayer);
         view.graphics.addMany(dataArr);
+        
         setView1(view);
-        view.on('click', (eve: any) => {
-          eve.stopPropagation();
+        view2 = view;
+        view2.graphics.addMany(dataArr1);
+        // view.on('click', (eve: any) => {
+        //   eve.stopPropagation();
+        
+        // })
+        view2.on('click', (eve: any) => {
+          
+          view2.hitTest(eve.screenPoint).then(function (r: any) {
+            if (r.results.length > 0 && r.results[0].graphic) {
+              let trainNumber = r.results[0].graphic.popupTemplate.name;
+              console.log(r);
+              history.push('/UnitOverview/'+trainNumber);
+            } else {
+            
+            }
+            
+          });
+          
+           
         
         })
-        view.on('pointer-move', (eve: any) => {       
+           
+     
+        view.on('pointer-move', (eve: any) => {  
+              
          view.hitTest(eve, dataArr).then(function (r: any) {
             if (r.results.length > 0 && r.results[0].graphic) {
               let graphic = r.results[0].graphic;
@@ -228,7 +272,7 @@ console.log(totalTrainData);
             } else {
              view.popup.close();
             }
-            view.popup.alignment = "bottom-right";
+            view.popup.alignment = "top-center";
           });
 
         });        
@@ -251,7 +295,7 @@ console.log(totalTrainData);
               features: [graphic]
             });
           } else {
-            //this.view1.popup.close();
+            view1.popup.close();
           }
           view1.popup.alignment = "bottom-right";
     

@@ -58,6 +58,13 @@ padding: 1px;font-weight: 500; }
   position: absolute;
   width: 170px;}
 
+  /* .esri-popup__content img {
+    width:30px;
+    float: left;
+    margin: 5px;
+    
+  }   */
+ 
 .highcharts-credits{ display: none; }
 .esri-display-object image{position: relative; z-index: 99}
 .esri-popup__content{margin: -15px; margin-top:-14px !important}

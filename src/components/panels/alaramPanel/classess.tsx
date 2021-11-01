@@ -91,7 +91,12 @@ export const classNames: any = mergeStyleSets(
       cursor: "pointer",
       margin:'0 15px',
       verticalAlign:'middle'
-
     },
+    colorSvg:{
+      rect:{
+        fill:'#ff9100'
+      }
+    },
+
   }
 );

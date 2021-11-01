@@ -1,0 +1,18 @@
+[
+
+      {   
+      "trainNo": "NCN-4-1",
+      "unitNo": "TFNSW-RSR-R15",
+      "alarmSource": "",
+      "status": "In Service - Coupling",
+      "availability": "Running",
+      "scheduledMaintenance": "01/08/2022",
+      "standingAlarms": "",
+      "nextStation": "Moree",
+      "serviceNotification": "-",
+      "lastUpdated": "21/07/2022 09:30 AM",
+      "longitude": 149.848139,
+      "latitude": -29.473583
+    }
+    
+]
